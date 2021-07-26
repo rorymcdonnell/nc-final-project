@@ -10,16 +10,20 @@ const NavBar = () => {
 
       <ul>
         <li>
-          <Link>Home</Link>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link>Maps</Link>
+          <Link to="/maps" style={{ textDecoration: "none" }}>
+            Maps
+          </Link>
         </li>
         <li>
-          <Link>About</Link>
+          <Link style={{ textDecoration: "none" }}>About</Link>
         </li>
         <li>
-          <Link>Contact</Link>
+          <Link style={{ textDecoration: "none" }}>Contact</Link>
         </li>
       </ul>
     </div>

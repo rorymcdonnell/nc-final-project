@@ -1,12 +1,12 @@
-import { useState } from "react";
 import NavBar from "./navigation-bar";
+import { Link } from "react-router-dom";
 
 const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   return (
     <div className="landing-page">
       <NavBar />
       <h1>Welcome to MAPA</h1>
-      <form>
+      <form className="landing-form" onSubmit={() => {}}>
         <label>
           Username:
           <br />
@@ -27,9 +27,17 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           ></input>
         </label>
         <br />
-        <button>Create a Group</button>
+        <button>
+          <Link to="/maps" style={{ textDecoration: "none", color: "black" }}>
+            Create a Group
+          </Link>
+        </button>
         <br />
-        <button>Join a Group</button>
+        <button>
+          <Link to="/maps" style={{ textDecoration: "none", color: "black" }}>
+            Join a Group
+          </Link>
+        </button>
       </form>
     </div>
   );

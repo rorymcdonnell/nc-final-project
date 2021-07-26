@@ -2,28 +2,37 @@
   text-align: center;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 20px;
-}
 .landing-page {
-  background-color: lightseagreen;
+  margin-bottom: 0;
+  padding-bottom: 10%;
+  color: #40c9b0;
 }
-.landing-page button {
-  width: 200px;
+
+.landing-form {
+  font-size: larger;
+  background-color: #40c9b0;
+  color: white;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+button {
+  width: 70%;
   height: 150px;
   margin: 10% auto 0 auto;
   border-radius: 7%;
   border-style: solid;
   border-color: black;
+  font-size: large;
+  text-decoration: none;
 }
+
 .landing-page input {
   border-style: solid;
   border-radius: 6px;
   border-color: black;
-  height: 20px;
+  height: 30px;
+  width: 65%;
   margin: 10px auto 10px auto;
 }
 
@@ -31,18 +40,27 @@ ul {
   position: absolute;
   width: 200px;
   height: 100%;
-  background: rgb(130, 251, 225);
+  background: #c6ff91;
   left: -200px;
   transition: 0.4s;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-decoration: none;
+  color: black;
 }
+
 .navbar.active {
   left: 0px;
 }
+
 .navbar ul li {
   list-style: none;
   color: black;
   font-size: 20px;
   padding: 20px 30px;
+  font-style: normal;
+  margin: 0;
+  width: 20px;
 }
 
 .toggle-button {
@@ -50,7 +68,7 @@ ul {
   top: 0;
   left: 120px;
   font-size: x-large;
-  color: aliceblue;
+  color: black;
 }
 
 .toggle-button span {
@@ -58,4 +76,18 @@ ul {
   height: 45px;
   background-color: black;
   display: block;
+}
+
+.map-page {
+  text-align: center;
+  background-color: #40c9b0;
+  margin-bottom: 0;
+  padding-bottom: 10%;
+}
+
+.group-list {
+  display: flex;
+  list-style: none;
+  font-size: large;
+  padding-top: 20%;
 }
