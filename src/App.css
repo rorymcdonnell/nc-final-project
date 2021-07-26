@@ -2,37 +2,60 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 20px;
+}
+.landing-page {
+  background-color: lightseagreen;
+}
+.landing-page button {
+  width: 200px;
+  height: 150px;
+  margin: 10% auto 0 auto;
+  border-radius: 7%;
+  border-style: solid;
+  border-color: black;
+}
+.landing-page input {
+  border-style: solid;
+  border-radius: 6px;
+  border-color: black;
+  height: 20px;
+  margin: 10px auto 10px auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar {
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  background: rgb(130, 251, 225);
+  left: -200px;
+  transition: 0.4s;
+}
+.navbar.active {
+  left: 0px;
+}
+.navbar ul li {
+  list-style: none;
+  color: black;
+  font-size: 20px;
+  padding: 20px 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.toggle-button {
+  position: relative;
+  top: 0;
+  left: 120px;
+  font-size: x-large;
+  color: aliceblue;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.toggle-button span {
+  width: 45px;
+  height: 45px;
+  background-color: black;
+  display: block;
 }
