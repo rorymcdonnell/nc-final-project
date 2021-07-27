@@ -1,4 +1,5 @@
 import { GroupContext } from "../contexts/groupContext";
+import { useContext } from "react";
 import NavBar from "./navigation-bar";
 
 const MapPage = () => {

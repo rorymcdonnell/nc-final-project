@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import firebase from "./Firebase/firebase";
 import LandingPage from "./components/landing-page";
 import MapPage from "./components/map-page";
 import { useState } from "react";
@@ -8,6 +9,7 @@ import { GroupContext } from "./contexts/groupContext";
 function App() {
   const [username, setUsername] = useState("");
   const [groupName, setGroupName] = useState("");
+  console.log(firebase.database);
 
   return (
     <BrowserRouter>

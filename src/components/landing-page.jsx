@@ -1,12 +1,26 @@
 import NavBar from "./navigation-bar";
 import { Link } from "react-router-dom";
+import { checkGroupExists } from "../utils/api";
 
 const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
+  //checks if group exists, if true error, if false, create group and links to page
+  const handleClickCreateGroup = async () => {
+    const groupCheck = await checkGroupExists(groupName).then((response) => {
+      if (response) {
+        console.log("group exists");
+        // createGroup(groupName, username, latitude, longitude);
+        // <Link to={`/${groupName}`}></Link>;
+      } else {
+        console.log("create group");
+      }
+    });
+  };
+
   return (
     <div className="landing-page">
       <NavBar />
       <h1>Welcome to MAPA</h1>
-      <form className="landing-form" onSubmit={() => {}}>
+      <form className="landing-form">
         <label>
           Username:
           <br />
@@ -27,10 +41,13 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           ></input>
         </label>
         <br />
-        <button>
-          <Link to="/maps" style={{ textDecoration: "none", color: "black" }}>
-            Create a Group
-          </Link>
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            handleClickCreateGroup();
+          }}
+        >
+          Create Group
         </button>
         <br />
         <button>
