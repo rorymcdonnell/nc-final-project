@@ -4,6 +4,8 @@ import LandingPage from "./components/landing-page";
 import MapPage from "./components/map-page";
 import { useState } from "react";
 import { GroupContext } from "./contexts/groupContext";
+// import TwoDMap from "./components/TwoDMap";
+import MapApp from "./components/MapApp";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -24,6 +26,13 @@ function App() {
             </Route>
             <Route exact path="/maps">
               <MapPage groupName={groupName} />
+            </Route>
+            <Route exact path="/maps/2d">
+              <MapApp
+                center={[-122.7498, 45.5935]}
+                basemap="mapbox://styles/mapbox/streets-v11"
+                zoom={14}
+              />
             </Route>
           </Switch>
         </div>
