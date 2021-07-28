@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { GroupContext } from './contexts/groupContext';
 // import TwoDMap from "./components/TwoDMap";
 import Map from './components/Map';
+import Marker from './components/Marker';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route exact path="/maps/2d">
               <Map />
+            </Route>
+            <Route exact path="/maps/3d">
+              <Marker />
             </Route>
           </Switch>
         </div>

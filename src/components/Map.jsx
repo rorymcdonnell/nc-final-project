@@ -75,7 +75,11 @@ const colors = [orangeIcon, blueIcon, greenIcon, redIcon];
 
 const Map = () => {
   const myMap = (
-    <MapContainer center={[51.505, -0.09]} zoom={5} scrollWheelZoom={false}>
+    <MapContainer
+      center={[52.675541, 1.23128]} //change to users location
+      zoom={16}
+      scrollWheelZoom={false}
+    >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
