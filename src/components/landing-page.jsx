@@ -8,15 +8,18 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const [createError, setCreateError] = useState("false");
   const [joinError, setJoinError] = useState("false");
   const [emptyFieldError, setEmptyFieldError] = useState("false");
+  const [linkActive, setLinkActive] = useState(false);
 
   const geolocation = useGeolocation();
 
   const handleCreateErrors = () => {
     setCreateError(!createError);
+    // setLinkActive(false);
   };
 
   const handleJoinErrors = () => {
     setJoinError(!joinError);
+    // setLinkActive(false);
   };
 
   //checks if group exists, if true error, if false, create group and links to page
@@ -57,6 +60,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
         console.log(response);
         handleJoinErrors();
         setCreateError("false");
+        setLinkActive(false);
       }
     });
   };
@@ -64,6 +68,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const handleInputError = () => {
     if (groupName.length !== 0 && username.length !== 0) {
       handleClickJoinGroup();
+      setLinkActive(true);
     } else {
       setEmptyFieldError(!emptyFieldError);
     }
@@ -108,7 +113,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           }}
         >
           <Link
-            to={createError ? "/" : `/${groupName}`}
+            to={linkActive ? "/" : `/${groupName}`}
             style={{ textDecoration: "none", color: "black" }}
           >
             Create Group
@@ -126,7 +131,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           }}
         >
           <Link
-            to={joinError ? "/" : `/${groupName}`}
+            to={linkActive ? `/${groupName}` : "/"}
             style={{ textDecoration: "none", color: "black" }}
           >
             Join a Group
