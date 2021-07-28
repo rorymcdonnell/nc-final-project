@@ -1,8 +1,7 @@
-import { GroupContext } from "../contexts/groupContext";
-import { useContext } from "react";
-import NavBar from "./navigation-bar";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { GroupContext } from '../contexts/groupContext';
+import { useContext } from 'react';
+import NavBar from './navigation-bar';
+import { Link } from 'react-router-dom';
 
 const GroupPage = () => {
   const { groupName } = useContext(GroupContext);
