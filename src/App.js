@@ -2,14 +2,13 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import firebase from "./Firebase/firebase";
 import LandingPage from "./components/landing-page";
-import MapPage from "./components/map-page";
+import GroupPage from "./components/GroupPage";
 import { useState } from "react";
 import { GroupContext } from "./contexts/groupContext";
 
 function App() {
   const [username, setUsername] = useState("");
   const [groupName, setGroupName] = useState("");
-  console.log(firebase.database);
 
   return (
     <BrowserRouter>
@@ -24,8 +23,8 @@ function App() {
                 setGroupName={setGroupName}
               />
             </Route>
-            <Route exact path="/maps">
-              <MapPage groupName={groupName} />
+            <Route exact path="/:groupName">
+              <GroupPage groupName={groupName} />
             </Route>
           </Switch>
         </div>

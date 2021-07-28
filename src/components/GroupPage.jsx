@@ -2,7 +2,7 @@ import { GroupContext } from "../contexts/groupContext";
 import { useContext } from "react";
 import NavBar from "./navigation-bar";
 
-const MapPage = () => {
+const GroupPage = () => {
   const { groupName } = useContext(GroupContext);
   return (
     <div className="map-page">
@@ -15,4 +15,4 @@ const MapPage = () => {
   );
 };
 
-export default MapPage;
+export default GroupPage;

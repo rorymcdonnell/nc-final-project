@@ -91,3 +91,7 @@ button {
   font-size: large;
   padding-top: 20%;
 }
+
+.error {
+  display: none;
+}

@@ -1,17 +1,65 @@
 import NavBar from "./navigation-bar";
-import { Link } from "react-router-dom";
-import { checkGroupExists } from "../utils/api";
+import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
+import { checkGroupExists, createGroup, joinGroup } from "../utils/api";
+import useGeolocation from "react-hook-geolocation";
 
 const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
+  const [createError, setCreateError] = useState("false");
+  const [joinError, setJoinError] = useState("false");
+
+  const geolocation = useGeolocation();
+
+  const handleCreateErrors = () => {
+    setCreateError(!createError);
+  };
+
+  const handleJoinErrors = () => {
+    setJoinError(!joinError);
+  };
+
   //checks if group exists, if true error, if false, create group and links to page
   const handleClickCreateGroup = async () => {
     const groupCheck = await checkGroupExists(groupName).then((response) => {
       if (response) {
-        console.log("group exists");
-        // createGroup(groupName, username, latitude, longitude);
-        // <Link to={`/${groupName}`}></Link>;
+        handleCreateErrors();
+        setJoinError("false");
       } else {
         console.log("create group");
+        setCreateError("false");
+        setJoinError("false");
+        createGroup(
+          groupName,
+          username,
+          geolocation.latitude,
+          geolocation.longitude
+        );
+        return (
+          <Link
+            to={`/${groupName}`}
+            style={{ textDecoration: "none", color: "black" }}
+          ></Link>
+        );
+      }
+    });
+  };
+
+  //checks if group exists, if true joins user to group, if false error
+  const handleClickJoinGroup = async () => {
+    const groupCheck = await checkGroupExists(groupName).then((response) => {
+      if (response) {
+        console.log("joining group....");
+        setCreateError("false");
+        setJoinError("false");
+        joinGroup(
+          groupName,
+          username,
+          geolocation.latitude,
+          geolocation.longitude
+        );
+      } else {
+        handleJoinErrors();
+        setCreateError("false");
       }
     });
   };
@@ -41,6 +89,10 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           ></input>
         </label>
         <br />
+        <p className={createError ? "error" : null}>
+          Group already exists! Click join group to join this group or use a
+          different group name.
+        </p>
         <button
           onClick={(event) => {
             event.preventDefault();
@@ -48,12 +100,31 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           }}
         >
           Create Group
+          {/* <Link
+            to={`/${groupName}`}
+            style={{ textDecoration: "none", color: "black" }}
+            >
+            Create Group
+          </Link> */}
         </button>
         <br />
-        <button>
-          <Link to="/maps" style={{ textDecoration: "none", color: "black" }}>
+        <p className={joinError ? "error" : null}>
+          Group does not exists! Click create group to create a group with this
+          name or check you spelling.
+        </p>
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            handleClickJoinGroup();
+          }}
+        >
+          Join a Group
+          {/* <Link
+            to={`/${groupName}`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
             Join a Group
-          </Link>
+          </Link> */}
         </button>
       </form>
     </div>
