@@ -5,7 +5,6 @@ import LandingPage from "./components/landing-page";
 import GroupPage from "./components/GroupPage";
 import { useState } from "react";
 import { GroupContext } from "./contexts/groupContext";
-// import TwoDMap from "./components/TwoDMap";
 import MapApp from "./components/MapApp";
 
 function App() {
@@ -25,8 +24,8 @@ function App() {
                 setGroupName={setGroupName}
               />
             </Route>
-            <Route exact path="/:groupName">
-              <GroupPage groupName={groupName} />
+            <Route exact path="/:group_slug">
+              <GroupPage />
             </Route>
             <Route exact path="/maps/2d">
               <MapApp
