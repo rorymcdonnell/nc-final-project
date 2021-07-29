@@ -8,21 +8,25 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const [createError, setCreateError] = useState("false");
   const [joinError, setJoinError] = useState("false");
   const [emptyFieldError, setEmptyFieldError] = useState("false");
+  const [linkActive, setLinkActive] = useState(false);
 
   const geolocation = useGeolocation();
 
   const handleCreateErrors = () => {
     setCreateError(!createError);
+    // setLinkActive(false);
   };
 
   const handleJoinErrors = () => {
     setJoinError(!joinError);
+    // setLinkActive(false);
   };
+  let toggle = false;
 
   //checks if group exists, if true error, if false, create group and links to page
 
   const handleClickCreateGroup = async () => {
-    const groupCheck = await checkGroupExists(groupName).then((response) => {
+    await checkGroupExists(groupName).then((response) => {
       if (response) {
         handleCreateErrors();
         setJoinError("false");
@@ -39,7 +43,14 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
       }
     });
   };
-
+  //checks if group exists, if true error, if false, create group and links to page
+  const checkGroupInput = () => {
+    if (groupName.length !== 0) {
+      handleClickCreateGroup();
+    } else {
+      // toggle = true;
+    }
+  };
   //checks if group exists, if true joins user to group, if false error
   const handleClickJoinGroup = async () => {
     const groupCheck = await checkGroupExists(groupName).then((response) => {
@@ -57,6 +68,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
         console.log(response);
         handleJoinErrors();
         setCreateError("false");
+        setLinkActive(false);
       }
     });
   };
@@ -64,6 +76,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const handleInputError = () => {
     if (groupName.length !== 0 && username.length !== 0) {
       handleClickJoinGroup();
+      setLinkActive(true);
     } else {
       setEmptyFieldError(!emptyFieldError);
     }
@@ -85,6 +98,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           ></input>
         </label>
         <br />
+        {toggle ? <h1>No</h1> : null}
         <label>
           Group Name:
           <br />
@@ -102,13 +116,14 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           different group name.
         </p>
         <button
+          className="menubuttons"
           onClick={(event) => {
             event.preventDefault();
             handleInputError();
           }}
         >
           <Link
-            to={createError ? "/" : `/${groupName}`}
+            to={linkActive ? "/" : `/${groupName}`}
             style={{ textDecoration: "none", color: "black" }}
           >
             Create Group
@@ -120,13 +135,14 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           name or check you spelling.
         </p>
         <button
+          className="menubuttons"
           onClick={(event) => {
             event.preventDefault();
             handleInputError();
           }}
         >
           <Link
-            to={joinError ? "/" : `/${groupName}`}
+            to={linkActive ? `/${groupName}` : "/"}
             style={{ textDecoration: "none", color: "black" }}
           >
             Join a Group

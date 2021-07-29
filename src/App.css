@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.leaflet-container {
+  align-items: baseline;
+  height: 100vh;
+}
+
+#mapid {
+  position: relative;
+  height: 180px;
+}
+
+.myEnterVRButton {
+  z-index: 9999;
+  position: absolute;
+}
+
 .landing-page {
   margin-bottom: 0;
   padding-bottom: 10%;
@@ -16,7 +31,7 @@
   padding: 30px;
 }
 
-button {
+.menu-buttons {
   width: 70%;
   height: 150px;
   margin: 10% auto 0 auto;
@@ -25,6 +40,7 @@ button {
   border-color: black;
   font-size: large;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .landing-page input {
@@ -94,4 +110,29 @@ button {
 
 .error {
   display: none;
+}
+
+/* VR button */
+.a-enter-vr-button {
+  height: 75px;
+  width: 220px;
+  font-size: 80px;
+  position: absolute;
+  bottom: 5rem;
+  line-height: 1rem;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.a-enter-vr-button:hover {
+  background-color: rgb(255, 255, 255);
+}
+.back-btn {
+  height: 50px;
+  width: 250px;
+  position: absolute;
+  left: 3rem;
+}
+.a-canvas {
+  height: 90vh;
 }

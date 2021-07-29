@@ -1,11 +1,12 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import firebase from "./Firebase/firebase";
-import LandingPage from "./components/landing-page";
+import LandingPage from "./components/LandingPage";
 import GroupPage from "./components/GroupPage";
 import { useState } from "react";
 import { GroupContext } from "./contexts/groupContext";
-import MapApp from "./components/MapApp";
+import Map from "./components/Map";
+import Marker from "./components/Marker";
+import GeoLocation from "./components/GeoLocation";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <GeoLocation />
       <GroupContext.Provider value={{ groupName, setGroupName }}>
         <div className="App">
           <Switch>
@@ -27,12 +29,11 @@ function App() {
             <Route exact path="/:group_slug">
               <GroupPage />
             </Route>
-            <Route exact path="/maps/2d">
-              <MapApp
-                center={[-122.7498, 45.5935]}
-                basemap="mapbox://styles/mapbox/streets-v11"
-                zoom={14}
-              />
+            <Route exact path="/:group_slug/map">
+              <Map />
+            </Route>
+            <Route exact path="/:group_slug/ar">
+              <Marker />
             </Route>
           </Switch>
         </div>
