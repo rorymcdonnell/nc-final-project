@@ -31,7 +31,7 @@
   padding: 30px;
 }
 
-button {
+.menu-buttons {
   width: 70%;
   height: 150px;
   margin: 10% auto 0 auto;
@@ -40,6 +40,7 @@ button {
   border-color: black;
   font-size: large;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .landing-page input {
