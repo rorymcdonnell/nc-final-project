@@ -1,8 +1,8 @@
-import NavBar from './navigation-bar';
-import { Link, useParams } from 'react-router-dom';
-import { useState } from 'react';
-import { checkGroupExists, createGroup, joinGroup } from '../utils/api';
-import useGeolocation from 'react-hook-geolocation';
+import NavBar from "./navigation-bar";
+import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
+import { checkGroupExists, createGroup, joinGroup } from "../utils/api";
+import useGeolocation from "react-hook-geolocation";
 
 const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const [createError, setCreateError] = useState("false");
@@ -29,11 +29,11 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
     await checkGroupExists(groupName).then((response) => {
       if (response) {
         handleCreateErrors();
-        setJoinError('false');
+        setJoinError("false");
       } else {
-        console.log('create group');
-        setCreateError('false');
-        setJoinError('false');
+        console.log("create group");
+        setCreateError("false");
+        setJoinError("false");
         createGroup(
           groupName,
           username,
@@ -55,9 +55,9 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const handleClickJoinGroup = async () => {
     const groupCheck = await checkGroupExists(groupName).then((response) => {
       if (response) {
-        console.log('joining group....');
-        setCreateError('false');
-        setJoinError('false');
+        console.log("joining group....");
+        setCreateError("false");
+        setJoinError("false");
         joinGroup(
           groupName,
           username,
@@ -111,7 +111,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           </p>
         </label>
         <br />
-        <p className={createError ? 'error' : null}>
+        <p className={createError ? "error" : null}>
           Group already exists! Click join group to join this group or use a
           different group name.
         </p>
