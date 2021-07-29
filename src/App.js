@@ -18,7 +18,7 @@ function App() {
       <GroupContext.Provider value={{ groupName, setGroupName }}>
         <div className="App">
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/nc-final-project">
               <LandingPage
                 setUsername={setUsername}
                 username={username}
@@ -26,13 +26,13 @@ function App() {
                 setGroupName={setGroupName}
               />
             </Route>
-            <Route exact path="/:group_slug">
+            <Route exact path="/nc-final-project/:group_slug">
               <GroupPage />
             </Route>
-            <Route exact path="/:group_slug/map">
+            <Route exact path="/nc-final-project/:group_slug/map">
               <Map />
             </Route>
-            <Route exact path="/:group_slug/ar">
+            <Route exact path="/nc-final-project/:group_slug/ar">
               <Marker />
             </Route>
           </Switch>
