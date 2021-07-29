@@ -7,6 +7,7 @@ import useGeolocation from "react-hook-geolocation";
 const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const [createError, setCreateError] = useState("false");
   const [joinError, setJoinError] = useState("false");
+  const [emptyFieldError, setEmptyFieldError] = useState("false");
 
   const geolocation = useGeolocation();
 
@@ -19,6 +20,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   };
 
   //checks if group exists, if true error, if false, create group and links to page
+
   const handleClickCreateGroup = async () => {
     const groupCheck = await checkGroupExists(groupName).then((response) => {
       if (response) {
@@ -33,12 +35,6 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           username,
           geolocation.latitude,
           geolocation.longitude
-        );
-        return (
-          <Link
-            to={`/${groupName}`}
-            style={{ textDecoration: "none", color: "black" }}
-          ></Link>
         );
       }
     });
@@ -58,10 +54,19 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           geolocation.longitude
         );
       } else {
+        console.log(response);
         handleJoinErrors();
         setCreateError("false");
       }
     });
+  };
+
+  const handleInputError = () => {
+    if (groupName.length !== 0 && username.length !== 0) {
+      handleClickJoinGroup();
+    } else {
+      setEmptyFieldError(!emptyFieldError);
+    }
   };
 
   return (
@@ -87,6 +92,9 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
             value={groupName}
             onChange={(event) => setGroupName(event.target.value)}
           ></input>
+          <p className={emptyFieldError ? "error" : null}>
+            Your username or group name cannot be blank!
+          </p>
         </label>
         <br />
         <p className={createError ? "error" : null}>
@@ -96,35 +104,33 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
         <button
           onClick={(event) => {
             event.preventDefault();
-            handleClickCreateGroup();
+            handleInputError();
           }}
         >
-          Create Group
-          {/* <Link
-            to={`/${groupName}`}
+          <Link
+            to={createError ? "/" : `/${groupName}`}
             style={{ textDecoration: "none", color: "black" }}
-            >
+          >
             Create Group
-          </Link> */}
+          </Link>
         </button>
         <br />
         <p className={joinError ? "error" : null}>
-          Group does not exists! Click create group to create a group with this
+          Group does not exist! Click create group to create a group with this
           name or check you spelling.
         </p>
         <button
           onClick={(event) => {
             event.preventDefault();
-            handleClickJoinGroup();
+            handleInputError();
           }}
         >
-          Join a Group
-          {/* <Link
-            to={`/${groupName}`}
+          <Link
+            to={joinError ? "/" : `/${groupName}`}
             style={{ textDecoration: "none", color: "black" }}
           >
             Join a Group
-          </Link> */}
+          </Link>
         </button>
       </form>
     </div>
