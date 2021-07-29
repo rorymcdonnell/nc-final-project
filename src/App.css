@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.leaflet-container {
+  align-items: baseline;
+  height: 100vh;
+}
+
+#mapid {
+  position: relative;
+  height: 180px;
+}
+
+.myEnterVRButton {
+  z-index: 9999;
+  position: absolute;
+}
+
 .landing-page {
   margin-bottom: 0;
   padding-bottom: 10%;

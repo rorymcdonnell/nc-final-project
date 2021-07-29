@@ -12,9 +12,11 @@ const GroupPage = () => {
       <NavBar />
       <h2>{group_slug}</h2>
       <ul className="group-list">People in your Group:</ul>
-      <button>View in AR</button>
+      <Link to="/maps/3d">
+        <button className="menubuttons">View in AR</button>
+      </Link>
       <Link to="/maps/2d">
-        <button>View in 2D</button>
+        <button className="menubuttons">View in 2D</button>
       </Link>
     </div>
   );
