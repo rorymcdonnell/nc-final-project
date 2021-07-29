@@ -6,12 +6,16 @@ export const checkGroupExists = (groupName) => {
   return group.once('value').then((data) => {
     const response = data.val();
 
-    if (response === null) {
-      return false;
-    } else {
-      return true;
-    }
-  });
+        if (response === null) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  
 };
 
 //creates a group if none exists with that name with user and location
