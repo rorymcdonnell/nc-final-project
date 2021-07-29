@@ -1,12 +1,12 @@
-import { GroupContext } from '../contexts/groupContext';
-import { useContext, useState, useEffect } from 'react';
-import NavBar from './NavigationBar';
-import { Link, useParams } from 'react-router-dom';
-import { getGroupData } from '../utils/api';
+import { GroupContext } from "../contexts/groupContext";
+import { useContext, useState, useEffect } from "react";
+import NavBar from "./NavigationBar";
+import { Link, useParams } from "react-router-dom";
+import { getGroupData } from "../utils/api";
 
 const GroupPage = () => {
   const { group_slug } = useParams();
-  const [groupData, setGroupData] = useState('');
+  const [groupData, setGroupData] = useState("");
   const [lookupObj, setLookupObj] = useState([]);
 
   useEffect(() => {
@@ -31,10 +31,10 @@ const GroupPage = () => {
           );
         })}
       </ul>
-      <Link to={`/${group_slug}/ar`}>
+      <Link to={`/nc-final-project/${group_slug}/ar`}>
         <button className="menu-buttons">View in AR</button>
       </Link>
-      <Link to={`/${group_slug}/map`}>
+      <Link to={`/nc-final-project/${group_slug}/map`}>
         <button className="menu-buttons">View in 2D</button>
       </Link>
     </div>

@@ -10,12 +10,12 @@ const NavBar = () => {
 
       <ul>
         <li>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/nc-final-project" style={{ textDecoration: "none" }}>
             Home
           </Link>
         </li>
         <li>
-          <Link to="/maps" style={{ textDecoration: "none" }}>
+          <Link to="/nc-final-project/maps" style={{ textDecoration: "none" }}>
             Maps
           </Link>
         </li>
