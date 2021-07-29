@@ -1,12 +1,12 @@
-import NavBar from "./navigation-bar";
-import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
-import { checkGroupExists, createGroup, joinGroup } from "../utils/api";
-import useGeolocation from "react-hook-geolocation";
+import NavBar from './navigation-bar';
+import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { checkGroupExists, createGroup, joinGroup } from '../utils/api';
+import useGeolocation from 'react-hook-geolocation';
 
 const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
-  const [createError, setCreateError] = useState("false");
-  const [joinError, setJoinError] = useState("false");
+  const [createError, setCreateError] = useState('false');
+  const [joinError, setJoinError] = useState('false');
 
   const geolocation = useGeolocation();
 
@@ -17,17 +17,17 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const handleJoinErrors = () => {
     setJoinError(!joinError);
   };
+  let toggle = false;
 
-  //checks if group exists, if true error, if false, create group and links to page
   const handleClickCreateGroup = async () => {
-    const groupCheck = await checkGroupExists(groupName).then((response) => {
+    await checkGroupExists(groupName).then((response) => {
       if (response) {
         handleCreateErrors();
-        setJoinError("false");
+        setJoinError('false');
       } else {
-        console.log("create group");
-        setCreateError("false");
-        setJoinError("false");
+        console.log('create group');
+        setCreateError('false');
+        setJoinError('false');
         createGroup(
           groupName,
           username,
@@ -37,20 +37,27 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
         return (
           <Link
             to={`/${groupName}`}
-            style={{ textDecoration: "none", color: "black" }}
+            style={{ textDecoration: 'none', color: 'black' }}
           ></Link>
         );
       }
     });
   };
-
+  //checks if group exists, if true error, if false, create group and links to page
+  const checkGroupInput = () => {
+    if (groupName.length !== 0) {
+      handleClickCreateGroup();
+    } else {
+      // toggle = true;
+    }
+  };
   //checks if group exists, if true joins user to group, if false error
   const handleClickJoinGroup = async () => {
     const groupCheck = await checkGroupExists(groupName).then((response) => {
       if (response) {
-        console.log("joining group....");
-        setCreateError("false");
-        setJoinError("false");
+        console.log('joining group....');
+        setCreateError('false');
+        setJoinError('false');
         joinGroup(
           groupName,
           username,
@@ -59,7 +66,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
         );
       } else {
         handleJoinErrors();
-        setCreateError("false");
+        setCreateError('false');
       }
     });
   };
@@ -80,6 +87,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           ></input>
         </label>
         <br />
+        {toggle ? <h1>No</h1> : null}
         <label>
           Group Name:
           <br />
@@ -89,14 +97,15 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           ></input>
         </label>
         <br />
-        <p className={createError ? "error" : null}>
+        <p className={createError ? 'error' : null}>
           Group already exists! Click join group to join this group or use a
           different group name.
         </p>
         <button
+          className="menubuttons"
           onClick={(event) => {
             event.preventDefault();
-            handleClickCreateGroup();
+            checkGroupInput();
           }}
         >
           Create Group
@@ -108,14 +117,15 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           </Link> */}
         </button>
         <br />
-        <p className={joinError ? "error" : null}>
+        <p className={joinError ? 'error' : null}>
           Group does not exists! Click create group to create a group with this
           name or check you spelling.
         </p>
         <button
+          className="menubuttons"
           onClick={(event) => {
             event.preventDefault();
-            handleClickJoinGroup();
+            checkGroupInput();
           }}
         >
           Join a Group

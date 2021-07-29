@@ -13,6 +13,7 @@ export const checkGroupExists = (groupName) => {
     }
   });
 };
+
 //creates a group if none exists with that name with user and location
 export const createGroup = (groupName, username, latitude, longitude) => {
   const group = firebase.database().ref(`${groupName}`);

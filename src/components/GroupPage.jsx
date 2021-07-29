@@ -12,10 +12,10 @@ const GroupPage = () => {
 
       <ul className="group-list">People in your Group:</ul>
       <Link to="/maps/3d">
-        <button>View in AR</button>
+        <button className="menubuttons">View in AR</button>
       </Link>
       <Link to="/maps/2d">
-        <button>View in 2D</button>
+        <button className="menubuttons">View in 2D</button>
       </Link>
     </div>
   );
