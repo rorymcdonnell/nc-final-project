@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { showMenu } from "../utils/showMenu";
 
 const NavBar = () => {
+  let groupName = localStorage.groupName;
+
   return (
     <div className="navbar" id="navbar">
       <span className="toggle-button" onClick={showMenu}>
@@ -15,8 +17,11 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/nc-final-project/maps" style={{ textDecoration: "none" }}>
-            Maps
+          <Link
+            to={`/nc-final-project/${groupName}`}
+            style={{ textDecoration: "none" }}
+          >
+            {groupName ? `${groupName}` : "Maps"}
           </Link>
         </li>
         <li>
