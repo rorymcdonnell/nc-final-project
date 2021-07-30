@@ -53,6 +53,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           Username:
           <br />
           <input
+            className="form-input"
             value={username}
             onChange={(event) => {
               setUsername(event.target.value);
@@ -64,6 +65,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           Group Name:
           <br />
           <input
+            className="form-input"
             value={groupName}
             onChange={(event) => setGroupName(event.target.value)}
           ></input>
