@@ -179,6 +179,7 @@
   border-bottom-right-radius: 10px;
   text-decoration: none;
   color: black;
+  z-index: 10;
 }
 
 .navbar.active {

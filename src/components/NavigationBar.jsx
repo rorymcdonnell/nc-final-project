@@ -21,7 +21,8 @@ const NavBar = () => {
             to={`/nc-final-project/${groupName}`}
             style={{ textDecoration: "none" }}
           >
-            {groupName ? `${groupName}` : "Maps"}
+            {/* {groupName ? `${groupName}` : "Your Group"} */}
+            Your Group
           </Link>
         </li>
         <li>
