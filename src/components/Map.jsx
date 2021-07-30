@@ -95,7 +95,7 @@ const Map = ({ location }) => {
       {!isLoading ? (
         <MapContainer
           center={[52.675541, 1.23128]} //change to users location
-          zoom={2}
+          zoom={13}
           scrollWheelZoom={false}
         >
           <TileLayer

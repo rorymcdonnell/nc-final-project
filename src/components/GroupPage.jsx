@@ -11,7 +11,6 @@ const GroupPage = () => {
   // const { groupName } = useContext(GroupContext);
 
   const myStorage = window.localStorage;
-  console.log(myStorage);
   const groupName = localStorage.getItem('groupName');
   const username = localStorage.getItem('username');
 
