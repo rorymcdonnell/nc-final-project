@@ -35,6 +35,9 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
     }
   };
 
+  localStorage.setItem("groupName", groupName);
+  localStorage.setItem("username", username);
+
   return (
     <div className="landing-page">
       <NavBar />

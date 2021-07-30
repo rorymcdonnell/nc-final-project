@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { GroupContext } from "../contexts/groupContext";
 
 const Marker = () => {
+  const { groupName } = useContext(GroupContext);
   useEffect(() => {
     let wrapper = document.createElement("div");
-    let html = `<a href='http://localhost:3000/maps'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
+    let html = `<a href='http://localhost:3000/${groupName}><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
 
     const lookupObj = Object.keys(groupData.testgroup);
 
