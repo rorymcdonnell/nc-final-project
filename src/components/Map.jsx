@@ -112,7 +112,7 @@ const Map = ({ location }) => {
                 position={finalPosition}
                 icon={colors[index]}
               >
-                <Popup> Name: {groupData[member].username}</Popup>
+                <Popup> Name: {member}</Popup>
               </Marker>
             );
           })}
