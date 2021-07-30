@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { checkGroupExists, sendData } from '../utils/api';
 import useGeolocation from 'react-hook-geolocation';
 import GroupPage from './GroupPage';
+import Particle from 'react-particles-js';
+import particlesConfig from '../assets/particlesConfig.json';
 
 const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   const [error, setError] = useState('');
@@ -36,14 +38,22 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
   };
 
   return (
-    <div className="landing-page">
+    <div
+      className="landing-page"
+      style={{ position: 'relative', overflow: 'hidden' }}
+    >
+      <div style={{ position: 'absolute' }}>
+        <Particle height="100vh" width="100vw" params={particlesConfig} />
+      </div>
       <NavBar />
+
       <h1>Welcome to MAPA</h1>
       <form className="landing-form">
         <label>
           Username:
           <br />
           <input
+            className="form-input"
             value={username}
             onChange={(event) => {
               setUsername(event.target.value);
@@ -55,34 +65,37 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           Group Name:
           <br />
           <input
+            className="form-input"
             value={groupName}
             onChange={(event) => setGroupName(event.target.value)}
           ></input>
           <p>{error ? error : null}</p>
         </label>
         <br />
-        <button
-          className="menu-buttons"
-          onClick={(event) => {
-            event.preventDefault();
-            checkInputs('create');
-          }}
-        >
-          Create Group
-        </button>
-        <br />
-        <button
-          className="menu-buttons"
-          onClick={(event) => {
-            event.preventDefault();
-            checkInputs('join');
-          }}
-        >
-          Join a Group
-        </button>
+        <div className="button-container">
+          <button
+            className="create-button"
+            onClick={(event) => {
+              event.preventDefault();
+              checkInputs('create');
+            }}
+          >
+            Create Group
+          </button>
+          <br />
+          <button
+            className="join-button"
+            onClick={(event) => {
+              event.preventDefault();
+              checkInputs('join');
+            }}
+          >
+            Join a Group
+          </button>
+        </div>
         <Link to={`/nc-final-project/${groupName}`}>
           <button
-            className="menu-buttons"
+            className="group-button"
             disabled="true"
             id="group-page-button"
           >
