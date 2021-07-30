@@ -1,12 +1,12 @@
-import { GroupContext } from "../contexts/groupContext";
-import { useContext, useState, useEffect } from "react";
-import NavBar from "./NavigationBar";
-import { Link, useParams } from "react-router-dom";
-import { getGroupData } from "../utils/api";
+import { GroupContext } from '../contexts/groupContext';
+import { useContext, useState, useEffect } from 'react';
+import NavBar from './NavigationBar';
+import { Link, useParams } from 'react-router-dom';
+import { getGroupData } from '../utils/api';
 
 const GroupPage = () => {
   const { group_slug } = useParams();
-  const [groupData, setGroupData] = useState("");
+  const [groupData, setGroupData] = useState('');
   const [lookupObj, setLookupObj] = useState([]);
 
   useEffect(() => {
@@ -16,8 +16,6 @@ const GroupPage = () => {
     });
   }, []);
 
-  console.log(group_slug);
-
   return (
     <div className="map-page">
       <NavBar />
@@ -25,8 +23,8 @@ const GroupPage = () => {
       <ul className="group-list">
         {lookupObj.map((member) => {
           return (
-            <li>
-              <p>{member}</p>
+            <li key={member}>
+              <p>{groupData[member].username}, </p>
             </li>
           );
         })}
