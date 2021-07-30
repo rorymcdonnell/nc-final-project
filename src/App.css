@@ -7,7 +7,7 @@
   height: 100vh;
 }
 .form-input {
-  z-index: 1000;
+  z-index: 2;
   position: relative;
 }
 
@@ -93,7 +93,7 @@
   box-shadow: -4px -4px 4px rgb(96 96 96 / 32%), 4px 4px 4px rgb(0 0 0 / 32%);
   background-image: linear-gradient(#70f094, #349420);
   border-radius: 20px;
-  z-index: 12;
+  z-index: 2;
   position: relative;
 }
 @media only screen and (min-width: 600px) {
@@ -183,7 +183,7 @@
 
 .navbar.active {
   left: 0px;
-  z-index: 2;
+  z-index: 1000;
 }
 
 .navbar ul li {
