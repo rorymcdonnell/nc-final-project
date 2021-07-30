@@ -21,13 +21,10 @@ export const checkGroupExists = (groupName) => {
 
 //send Data to DB
 export const sendData = (groupName, username, latitude, longitude) => {
-  const group = firebase.database().ref(`${groupName}`);
-  return group.push({
-    heading: 0,
-    position: { latitude, longitude },
-    username: username,
-    speed: 0
-  });
+  firebase
+    .database()
+    .ref(`${groupName}/` + username)
+    .set({ position: { latitude, longitude } });
 };
 
 //get Group Data

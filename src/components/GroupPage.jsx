@@ -1,4 +1,4 @@
-// import { GroupContext } from "../contexts/groupContext";
+import { GroupContext } from "../contexts/groupContext";
 import { useContext, useState, useEffect } from "react";
 import NavBar from "./NavigationBar";
 import { Link, useParams } from "react-router-dom";
@@ -32,8 +32,8 @@ const GroupPage = () => {
       <ul className="group-list">
         {lookupObj.map((member) => {
           return (
-            <li>
-              <p>{member}</p>
+            <li key={member}>
+              <p>{groupData[member].username}, </p>
             </li>
           );
         })}
