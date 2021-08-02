@@ -58,7 +58,8 @@ const Marker = ({ location }) => {
 
   let lookupObj = Object.keys(groupData);
 
-  let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
+  let html = `<a href='http://localhost:3000/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene embedded
+  "><a-camera minDistance=10 gps-camera rotation-reader></a-camera>`;
   lookupObj.forEach((member) => {
     html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
   });
