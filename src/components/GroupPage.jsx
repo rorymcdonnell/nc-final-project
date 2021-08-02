@@ -24,7 +24,10 @@ const GroupPage = () => {
   }, []);
 
   return (
-    <div className="map-page">
+    <div
+      className="group-page"
+      style={{ position: "relative", overflow: "hidden" }}
+    >
       <div style={{ position: "absolute" }}>
         <Particle height="100vh" width="100vw" params={particlesConfig} />
       </div>
@@ -32,14 +35,16 @@ const GroupPage = () => {
       <h2>{group_slug}</h2>
       <h4>Welcome {username}</h4>
       <ul className="group-list">
+        <li className="user-heading">Username</li>
         {lookupObj.map((member) => {
           return (
             <li key={member}>
-              <p>{member}, </p>
+              <p>{member} </p>
             </li>
           );
         })}
       </ul>
+
       <div className="button-container">
         <Link to={`/nc-final-project/${group_slug}/ar`}>
           <button className="join-button">View in AR</button>
