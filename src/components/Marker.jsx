@@ -14,9 +14,7 @@ const Marker = ({ location }) => {
     getGroupData(groupName)
       .then((response) => {
         setGroupData(response);
-        console.log(groupData);
         setLookupObj(Object.keys(groupData));
-        console.log(lookupObj);
       })
       .then((response) => {
         setIsLoading(false);
