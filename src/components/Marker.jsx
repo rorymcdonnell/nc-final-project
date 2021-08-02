@@ -37,7 +37,7 @@ const Marker = ({ location }) => {
   //a-camera gps-camera rotation-reader
   return (
     <Scene vr-mode-ui="enabled: false">
-      <Entity camera="gps-camera rotation reader" />
+      <a-camera gps-camera rotation reader></a-camera>
       <Entity
         primitive="a-box"
         gps-entity-place="latitude: 52; longitude: 10"
