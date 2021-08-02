@@ -7,21 +7,29 @@ import GroupPage from './GroupPage';
 import Particle from 'react-particles-js';
 import particlesConfig from '../assets/particlesConfig.json';
 
-const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
+const LandingPage = ({ setUsername, setGroupName }) => {
   const [error, setError] = useState('');
+  const [userCheck, setUserCheck] = useState('');
+  const [groupCheck, setGroupCheck] = useState('');
   const [groupPageDisabled, setGroupPageDisabled] = useState(true);
 
   const geolocation = useGeolocation();
 
+  const myStorage = window.localStorage;
+  const groupName = localStorage.getItem('groupName');
+  const username = localStorage.getItem('username');
+
   const checkInputs = async (button) => {
-    if (groupName.length === 0 || username.length === 0) {
+    if (groupCheck.length === 0 || userCheck.length === 0) {
       setError('Please provide valid inputs');
     } else {
-      checkGroupExists(groupName).then((response) => {
+      checkGroupExists(groupCheck).then((response) => {
         if (
           (response && button === 'join') ||
           (!response && button === 'create')
         ) {
+          localStorage.setItem('groupName', groupCheck);
+          localStorage.setItem('username', userCheck);
           sendData(
             groupName,
             username,
@@ -40,8 +48,6 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    localStorage.setItem('groupName', groupName);
-    localStorage.setItem('username', username);
     switch (e.target.innerHTML) {
       case 'Create Group':
         checkInputs('create');
@@ -67,7 +73,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           <input
             className="form-input"
             onBlur={(event) => {
-              setUsername(event.target.value);
+              setUserCheck(event.target.value);
             }}
           ></input>
         </label>
@@ -78,7 +84,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           <input
             className="form-input"
             onBlur={(event) => {
-              setGroupName(event.target.value);
+              setGroupCheck(event.target.value);
             }}
           ></input>
           <p>{error && error}</p>

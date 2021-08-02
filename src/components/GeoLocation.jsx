@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import useGeolocation from 'react-hook-geolocation';
-import { sendData } from '../utils/api';
+import { sendData, getGroupData } from '../utils/api';
 
 const GeoLocation = ({ username, groupName, location, setLocation }) => {
   const geolocation = useGeolocation();
-  setTimeout(setLocation(geolocation.latitude), 10000);
+  setLocation(geolocation.latitude);
   useEffect(() => {
     sendData(groupName, username, geolocation.latitude, geolocation.longitude);
   }, [location]);

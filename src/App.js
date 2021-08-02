@@ -12,6 +12,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [groupName, setGroupName] = useState('');
   const [location, setLocation] = useState('');
+  const [groupData, setGroupData] = useState('');
 
   return (
     <div>

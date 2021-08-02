@@ -16,7 +16,7 @@ const GroupPage = () => {
   const username = localStorage.getItem('username');
 
   useEffect(() => {
-    getGroupData(group_slug).then((response) => {
+    getGroupData(groupName).then((response) => {
       setGroupData(response);
       setLookupObj(Object.keys(response));
     });
