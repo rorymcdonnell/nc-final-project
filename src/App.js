@@ -42,7 +42,7 @@ function App() {
                 <Map location={location} />
               </Route>
               <Route exact path="/nc-final-project/:group_slug/ar">
-                <Marker groupName={groupName} />
+                <Marker location={location} />
               </Route>
             </Switch>
           </div>

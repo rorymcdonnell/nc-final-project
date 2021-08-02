@@ -1,46 +1,43 @@
-import React, { useEffect } from 'react';
+import { ConsoleWriter } from 'istanbul-lib-report';
+import React, { useEffect, useState } from 'react';
+import { getGroupData } from '../utils/api';
 
-const Marker = ({ groupName }) => {
+const Marker = ({ location }) => {
+  const [lookupObj, setLookupObj] = useState({});
+  const [groupData, setGroupData] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const myStorage = window.localStorage;
+  const groupName = localStorage.getItem('groupName');
+  const username = localStorage.getItem('username');
+
   useEffect(() => {
-    /*
-    get data
-    */
+    getGroupData(groupName)
+      .then((response) => {
+        console.log(response);
+        setGroupData(response);
+        setLookupObj(Object.keys(groupData));
+      })
+      .then((response) => {
+        setIsLoading(false);
+      });
+  }, [location]);
+  if (!isLoading) {
+    if (document.getElementById('AR') !== null) {
+      let element = document.getElementById('AR');
+      element.remove();
+    }
     let wrapper = document.createElement('div');
+    wrapper.id = 'AR';
     let html = `<a href='http://localhost:3000/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
 
-    const lookupObj = Object.keys(groupData.testgroup);
-
     lookupObj.forEach((member) => {
-      html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData.testgroup[member].position.latitude}; longitude: ${groupData.testgroup[member].position.longitude}"/>`;
+      html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
     });
     html += `</a-scene>`;
-
+    console.log(html);
     wrapper.innerHTML = html;
     document.body.appendChild(wrapper);
-  }, []);
-
-  let groupData = {
-    testgroup: {
-      identifier1: {
-        heading: 0,
-        speed: 0,
-        username: 'Jimbob',
-        position: { latitude: 52.675541, longitude: 1.23128 }
-      },
-      identifier2: {
-        heading: 0,
-        speed: 0,
-        username: 'Todd Howard',
-        position: { latitude: 52.675507, longitude: 1.230954 }
-      },
-      identifier3: {
-        heading: 0,
-        speed: 0,
-        username: 'Hodd Toward',
-        position: { latitude: 52.675585, longitude: 1.231684 }
-      }
-    }
-  };
+  }
 
   return <div></div>;
 };
