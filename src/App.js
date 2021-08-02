@@ -1,21 +1,21 @@
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import GroupPage from "./components/GroupPage";
-import { useState } from "react";
-import { GroupContext } from "./contexts/groupContext";
-import Map from "./components/Map";
-import Marker from "./components/Marker";
-import GeoLocation from "./components/GeoLocation";
+import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import GroupPage from './components/GroupPage';
+import { useState } from 'react';
+import { GroupContext } from './contexts/groupContext';
+import Map from './components/Map';
+import Marker from './components/Marker';
+import GeoLocation from './components/GeoLocation';
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [groupName, setGroupName] = useState("");
-  const [location, setLocation] = useState("");
+  const [username, setUsername] = useState('');
+  const [groupName, setGroupName] = useState('');
+  const [location, setLocation] = useState('');
 
   return (
     <div>
-      {username !== "" && groupName !== "" ? (
+      {username !== '' && groupName !== '' ? (
         <GeoLocation
           username={username}
           groupName={groupName}
@@ -42,7 +42,7 @@ function App() {
                 <Map location={location} />
               </Route>
               <Route exact path="/nc-final-project/:group_slug/ar">
-                <Marker groupName={groupName} />
+                <Marker location={location} />
               </Route>
             </Switch>
           </div>

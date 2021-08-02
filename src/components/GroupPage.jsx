@@ -13,11 +13,8 @@ const GroupPage = () => {
   // const { groupName } = useContext(GroupContext);
 
   const myStorage = window.localStorage;
-  console.log(myStorage);
   const groupName = localStorage.getItem("groupName");
   const username = localStorage.getItem("username");
-  console.log(groupName);
-  console.log(username);
 
   useEffect(() => {
     getGroupData(group_slug).then((response) => {
@@ -38,7 +35,7 @@ const GroupPage = () => {
         {lookupObj.map((member) => {
           return (
             <li key={member}>
-              <p>{groupData[member].username}, </p>
+              <p>{member}, </p>
             </li>
           );
         })}
