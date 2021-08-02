@@ -37,9 +37,11 @@ const Marker = ({ location }) => {
   //a-camera gps-camera rotation-reader
   return (
     <Scene>
+      <Entity camera={'gps-camera rotation reader'} />
       <Entity
         primitive="a-box"
         gps-entity-place="latitude: 52; longitude: 10"
+        color="blue"
       />
     </Scene>
   );
