@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import useGeolocation from 'react-hook-geolocation';
-import { sendData, getGroupData } from '../utils/api';
+import { sendData } from '../utils/api';
 
 const GeoLocation = ({ username, groupName, location, setLocation }) => {
   const geolocation = useGeolocation();

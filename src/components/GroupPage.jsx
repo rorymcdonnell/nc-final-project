@@ -6,9 +6,8 @@ import { getGroupData } from '../utils/api';
 import Particle from 'react-particles-js';
 import particlesConfig from '../assets/particlesConfig.json';
 
-const GroupPage = () => {
+const GroupPage = ({ groupData, setGroupData }) => {
   const { group_slug } = useParams();
-  const [groupData, setGroupData] = useState('');
   const [lookupObj, setLookupObj] = useState([]);
 
   const myStorage = window.localStorage;
