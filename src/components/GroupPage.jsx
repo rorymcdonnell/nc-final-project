@@ -10,7 +10,6 @@ const GroupPage = () => {
   const { group_slug } = useParams();
   const [groupData, setGroupData] = useState('');
   const [lookupObj, setLookupObj] = useState([]);
-  // const { groupName } = useContext(GroupContext);
 
   const myStorage = window.localStorage;
   const groupName = localStorage.getItem('groupName');
