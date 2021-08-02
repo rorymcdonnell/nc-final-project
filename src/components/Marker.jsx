@@ -4,38 +4,68 @@ import { Entity, Scene } from 'aframe-react';
 
 const Marker = ({ location }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [groupData, setGroupData] = useState({});
-  const [lookupObj, setLookupObj] = useState([]);
+  // const [groupData, setGroupData] = useState('');
+  // const [lookupObj, setLookupObj] = useState('');
 
   const groupName = localStorage.getItem('groupName');
 
-  useEffect(() => {
-    getGroupData(groupName)
-      .then((response) => {
-        setGroupData(response);
-        setLookupObj(Object.keys(groupData));
-        console.log(lookupObj);
-      })
-      .then((response) => {
-        setIsLoading(false);
-      });
-  }, [location]);
+  // useEffect(() => {
+  //   getGroupData(groupName)
+  //     .then((response) => {
+  //       setGroupData(response);
+  //       setLookupObj(Object.keys(groupData));
+  //       console.log(lookupObj);
+  //     })
+  //     .then((response) => {
+  //       setIsLoading(false);
+  //       AR();
+  //     });
+  // }, [location]);
 
-  if (!isLoading) {
-    const AR = () => {
-      let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
-      console.log(lookupObj);
-      lookupObj.forEach((member) => {
-        html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
-      });
-      html += `</a-scene>`;
-      console.log(html);
-      let wrapper = document.createElement('div');
-      wrapper.innerHTML = html;
-      document.body.appendChild(wrapper);
-    };
-    AR();
-  }
+  // const AR = () => {
+  //   if (!isLoading) {
+  //     let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
+  //     lookupObj.forEach((member) => {
+  //       html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
+  //     });
+  //     html += `</a-scene>`;
+  //     let wrapper = document.createElement('div');
+  //     wrapper.innerHTML = html;
+  //     document.body.appendChild(wrapper);
+  //   }
+  // };
+
+  const groupData = {
+    Aaron: {
+      position: {
+        latitude: 52.67567031124288,
+        longitude: 1.2313851629922208
+      }
+    },
+    Chris: {
+      position: {
+        latitude: 52.681113599999996,
+        longitude: 1.2320768
+      }
+    },
+    John: {
+      position: {
+        latitude: 52.675717999999996,
+        longitude: 1.2313607
+      }
+    }
+  };
+
+  let lookupObj = Object.keys(groupData);
+
+  let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
+  lookupObj.forEach((member) => {
+    html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
+  });
+  html += `</a-scene>`;
+  let wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+  document.body.appendChild(wrapper);
 
   return <div></div>;
   // (
