@@ -23,7 +23,7 @@ const Marker = ({ location }) => {
       });
   }, [location]);
 
-  if (!isLoading) {
+  const AR = () => {
     if (document.getElementById('AR') !== null) {
       let element = document.getElementById('AR');
       element.remove();
@@ -39,9 +39,9 @@ const Marker = ({ location }) => {
     console.log(html);
     wrapper.innerHTML = html;
     document.body.appendChild(wrapper);
-  }
+  };
 
-  return <div></div>;
+  return <div>{!isLoading ? AR() : <p>is Loading...</p>}</div>;
 };
 
 export default Marker;
