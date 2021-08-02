@@ -23,13 +23,11 @@ const GroupPage = () => {
   }, []);
 
   return (
-
     <div
       className="group-page"
-      style={{ position: "relative", overflow: "hidden" }}
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
-      <div style={{ position: "absolute" }}>
-
+      <div style={{ position: 'absolute' }}>
         <Particle height="100vh" width="100vw" params={particlesConfig} />
       </div>
       <NavBar />
