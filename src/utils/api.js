@@ -1,5 +1,6 @@
 import firebase from '../Firebase/firebase';
 //checks database for groups existence
+
 export const checkGroupExists = (groupName) => {
   const group = firebase.database().ref(`${groupName}`);
 
@@ -7,7 +8,6 @@ export const checkGroupExists = (groupName) => {
     .once('value')
     .then((data) => {
       const response = data.val();
-
       if (response === null) {
         return false;
       } else {

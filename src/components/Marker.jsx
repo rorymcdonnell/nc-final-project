@@ -1,45 +1,83 @@
-import { ConsoleWriter } from 'istanbul-lib-report';
 import React, { useEffect, useState } from 'react';
 import { getGroupData } from '../utils/api';
+import { Entity, Scene } from 'aframe-react';
 
 const Marker = ({ location }) => {
-  const [lookupObj, setLookupObj] = useState({});
-  const [groupData, setGroupData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const myStorage = window.localStorage;
+  // const [groupData, setGroupData] = useState('');
+  // const [lookupObj, setLookupObj] = useState('');
+
   const groupName = localStorage.getItem('groupName');
-  const username = localStorage.getItem('username');
 
-  useEffect(() => {
-    getGroupData(groupName)
-      .then((response) => {
-        console.log(response);
-        setGroupData(response);
-        setLookupObj(Object.keys(groupData));
-      })
-      .then((response) => {
-        setIsLoading(false);
-      });
-  }, [location]);
-  if (!isLoading) {
-    if (document.getElementById('AR') !== null) {
-      let element = document.getElementById('AR');
-      element.remove();
+  // useEffect(() => {
+  //   getGroupData(groupName)
+  //     .then((response) => {
+  //       setGroupData(response);
+  //       setLookupObj(Object.keys(groupData));
+  //       console.log(lookupObj);
+  //     })
+  //     .then((response) => {
+  //       setIsLoading(false);
+  //       AR();
+  //     });
+  // }, [location]);
+
+  // const AR = () => {
+  //   if (!isLoading) {
+  //     let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
+  //     lookupObj.forEach((member) => {
+  //       html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
+  //     });
+  //     html += `</a-scene>`;
+  //     let wrapper = document.createElement('div');
+  //     wrapper.innerHTML = html;
+  //     document.body.appendChild(wrapper);
+  //   }
+  // };
+
+  const groupData = {
+    Aaron: {
+      position: {
+        latitude: 52.67567031124288,
+        longitude: 1.2313851629922208
+      }
+    },
+    Chris: {
+      position: {
+        latitude: 52.681113599999996,
+        longitude: 1.2320768
+      }
+    },
+    John: {
+      position: {
+        latitude: 52.675717999999996,
+        longitude: 1.2313607
+      }
     }
-    let wrapper = document.createElement('div');
-    wrapper.id = 'AR';
-    let html = `<a href='http://localhost:3000/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
+  };
 
-    lookupObj.forEach((member) => {
-      html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
-    });
-    html += `</a-scene>`;
-    console.log(html);
-    wrapper.innerHTML = html;
-    document.body.appendChild(wrapper);
-  }
+  let lookupObj = Object.keys(groupData);
+
+  let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
+  lookupObj.forEach((member) => {
+    html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
+  });
+  html += `</a-scene>`;
+  let wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+  document.body.appendChild(wrapper);
 
   return <div></div>;
+  // (
+  //   <Scene>
+  //     <a-camera gps-camera rotation reader></a-camera>
+  //     <Entity
+  //       primitive="a-box"
+  //       gps-entity-place="latitude: 52; longitude: 1.2"
+  //       color="blue"
+  //     />
+  //   </Scene>
+  // );
 };
 
 export default Marker;

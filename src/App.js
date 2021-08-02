@@ -7,11 +7,13 @@ import { GroupContext } from './contexts/groupContext';
 import Map from './components/Map';
 import Marker from './components/Marker';
 import GeoLocation from './components/GeoLocation';
+import { Browser } from 'leaflet';
 
 function App() {
   const [username, setUsername] = useState('');
   const [groupName, setGroupName] = useState('');
   const [location, setLocation] = useState('');
+  const [groupData, setGroupData] = useState('');
 
   return (
     <div>
