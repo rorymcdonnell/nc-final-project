@@ -1,19 +1,19 @@
-import { GroupContext } from "../contexts/groupContext";
-import { useContext, useState, useEffect } from "react";
-import NavBar from "./NavigationBar";
-import { Link, useParams } from "react-router-dom";
-import { getGroupData } from "../utils/api";
-import Particle from "react-particles-js";
-import particlesConfig from "../assets/particlesConfig.json";
-import useGeolocation from "react-hook-geolocation";
+import { GroupContext } from '../contexts/groupContext';
+import { useContext, useState, useEffect } from 'react';
+import NavBar from './NavigationBar';
+import { Link, useParams } from 'react-router-dom';
+import { getGroupData } from '../utils/api';
+import Particle from 'react-particles-js';
+import particlesConfig from '../assets/particlesConfig.json';
+import useGeolocation from 'react-hook-geolocation';
 
 const GroupPage = ({ groupData, setGroupData }) => {
   const { group_slug } = useParams();
   const [lookupObj, setLookupObj] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const groupName = localStorage.getItem("groupName");
-  const username = localStorage.getItem("username");
+  const groupName = localStorage.getItem('groupName');
+  const username = localStorage.getItem('username');
 
   useEffect(() => {
     getGroupData(groupName).then((response) => {
@@ -51,9 +51,9 @@ const GroupPage = ({ groupData, setGroupData }) => {
     return (
       <div
         className="group-page"
-        style={{ position: "relative", overflow: "hidden" }}
+        style={{ position: 'relative', overflow: 'hidden' }}
       >
-        <div style={{ position: "absolute" }}>
+        <div style={{ position: 'absolute' }}>
           <Particle height="100vh" width="100vw" params={particlesConfig} />
         </div>
         <NavBar />
@@ -65,9 +65,9 @@ const GroupPage = ({ groupData, setGroupData }) => {
   return (
     <div
       className="group-page"
-      style={{ position: "relative", overflow: "hidden" }}
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
-      <div style={{ position: "absolute" }}>
+      <div style={{ position: 'absolute' }}>
         <Particle height="100vh" width="100vw" params={particlesConfig} />
       </div>
       <NavBar />

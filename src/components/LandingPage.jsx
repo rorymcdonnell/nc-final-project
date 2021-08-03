@@ -90,7 +90,7 @@ const LandingPage = ({ setUsername, setGroupName }) => {
           <p>{error && error}</p>
         </label>
         <br />
-        {groupPageDisabled && (
+        {groupPageDisabled ? (
           <div className="button-container">
             <button className="create-button" onClick={handleClick}>
               Create Group
@@ -100,8 +100,7 @@ const LandingPage = ({ setUsername, setGroupName }) => {
               Join a Group
             </button>
           </div>
-        )}
-        {!groupPageDisabled && (
+        ) : (
           <Link to={`/${groupName}`}>
             <button className="group-button" id="group-page-button">
               Group Page

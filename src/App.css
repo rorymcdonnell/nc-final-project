@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #40c9b0;
+  height: 100%;
 }
 
 h1 {
@@ -41,7 +42,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  grid-template-areas: "create join";
+  grid-template-areas: 'create join';
 }
 
 .create-button {
@@ -105,7 +106,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "create join";
+    grid-template-areas: 'create join';
   }
 
   .create-button {
@@ -233,7 +234,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  grid-template-areas: "users distance";
+  grid-template-areas: 'users distance';
   overflow: scroll;
 }
 .group-list {
