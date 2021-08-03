@@ -1,27 +1,35 @@
-import NavBar from './NavigationBar';
-import { Link, useParams, Route } from 'react-router-dom';
-import { useState } from 'react';
-import { checkGroupExists, sendData } from '../utils/api';
-import useGeolocation from 'react-hook-geolocation';
-import GroupPage from './GroupPage';
-import Particle from 'react-particles-js';
-import particlesConfig from '../assets/particlesConfig.json';
+import NavBar from "./NavigationBar";
+import { Link, useParams, Route } from "react-router-dom";
+import { useState } from "react";
+import { checkGroupExists, sendData } from "../utils/api";
+import useGeolocation from "react-hook-geolocation";
+import GroupPage from "./GroupPage";
+import Particle from "react-particles-js";
+import particlesConfig from "../assets/particlesConfig.json";
 
-const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
-  const [error, setError] = useState('');
+const LandingPage = ({ setUsername, setGroupName }) => {
+  const [error, setError] = useState("");
+  const [userCheck, setUserCheck] = useState("");
+  const [groupCheck, setGroupCheck] = useState("");
   const [groupPageDisabled, setGroupPageDisabled] = useState(true);
 
   const geolocation = useGeolocation();
 
+  const myStorage = window.localStorage;
+  const groupName = localStorage.getItem("groupName");
+  const username = localStorage.getItem("username");
+
   const checkInputs = async (button) => {
-    if (groupName.length === 0 || username.length === 0) {
-      setError('Please provide valid inputs');
+    if (groupCheck.length === 0 || userCheck.length === 0) {
+      setError("Please provide valid inputs");
     } else {
-      checkGroupExists(groupName).then((response) => {
+      checkGroupExists(groupCheck).then((response) => {
         if (
-          (response && button === 'join') ||
-          (!response && button === 'create')
+          (response && button === "join") ||
+          (!response && button === "create")
         ) {
+          localStorage.setItem("groupName", groupCheck);
+          localStorage.setItem("username", userCheck);
           sendData(
             groupName,
             username,
@@ -29,8 +37,8 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
             geolocation.longitude
           );
           setGroupPageDisabled(false);
-        } else if (button === 'create') {
-          setError('That group exists, please try again');
+        } else if (button === "create") {
+          setError("That group exists, please try again");
         } else {
           setError("That group doesn't exist, please try again");
         }
@@ -40,22 +48,20 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    localStorage.setItem('groupName', groupName);
-    localStorage.setItem('username', username);
     switch (e.target.innerHTML) {
-      case 'Create Group':
-        checkInputs('create');
-      case 'Join a Group':
-        checkInputs('join');
+      case "Create Group":
+        checkInputs("create");
+      case "Join a Group":
+        checkInputs("join");
     }
   };
 
   return (
     <div
       className="landing-page"
-      style={{ position: 'relative', overflow: 'hidden' }}
+      style={{ position: "relative", overflow: "hidden" }}
     >
-      <div style={{ position: 'absolute' }}>
+      <div style={{ position: "absolute" }}>
         <Particle height="100vh" width="100vw" params={particlesConfig} />
       </div>
       <NavBar />
@@ -67,7 +73,7 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           <input
             className="form-input"
             onBlur={(event) => {
-              setUsername(event.target.value);
+              setUserCheck(event.target.value);
             }}
           ></input>
         </label>
@@ -78,23 +84,25 @@ const LandingPage = ({ setUsername, username, setGroupName, groupName }) => {
           <input
             className="form-input"
             onBlur={(event) => {
-              setGroupName(event.target.value);
+              setGroupCheck(event.target.value);
             }}
           ></input>
           <p>{error && error}</p>
         </label>
         <br />
-        <div className="button-container">
-          <button className="create-button" onClick={handleClick}>
-            Create Group
-          </button>
-          <br />
-          <button className="join-button" onClick={handleClick}>
-            Join a Group
-          </button>
-        </div>
+        {groupPageDisabled && (
+          <div className="button-container">
+            <button className="create-button" onClick={handleClick}>
+              Create Group
+            </button>
+            <br />
+            <button className="join-button" onClick={handleClick}>
+              Join a Group
+            </button>
+          </div>
+        )}
         {!groupPageDisabled && (
-          <Link to={`/nc-final-project/${groupName}`}>
+          <Link to={`/${groupName}`}>
             <button className="group-button" id="group-page-button">
               Group Page
             </button>
