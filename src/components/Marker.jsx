@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { getGroupData } from '../utils/api';
-import { Entity, Scene } from 'aframe-react';
+import React, { useEffect, useState } from "react";
+import { getGroupData } from "../utils/api";
+import { Entity, Scene } from "aframe-react";
 
 const Marker = ({ location, groupData }) => {
   const [refreshedData, setGroupData] = useState(groupData);
-  const groupName = localStorage.getItem('groupName');
+  const groupName = localStorage.getItem("groupName");
 
   useEffect(() => {
     initialSetData();
@@ -14,7 +14,7 @@ const Marker = ({ location, groupData }) => {
   const refreshData = async () => {
     setInterval(async () => {
       await initialSetData();
-      document.getElementById('arjs-video').remove();
+      document.getElementById("arjs-video").remove();
     }, 60000);
   };
 
@@ -34,7 +34,7 @@ const Marker = ({ location, groupData }) => {
     });
 
     html += `</div></a-scene>`;
-    let wrapper = document.getElementById('unbelieveAbleScenes');
+    let wrapper = document.getElementById("unbelieveAbleScenes");
     wrapper.innerHTML = html;
   };
 

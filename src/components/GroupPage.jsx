@@ -12,7 +12,6 @@ const GroupPage = ({ groupData, setGroupData }) => {
   const [lookupObj, setLookupObj] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const myStorage = window.localStorage;
   const groupName = localStorage.getItem("groupName");
   const username = localStorage.getItem("username");
 
@@ -102,10 +101,10 @@ const GroupPage = ({ groupData, setGroupData }) => {
       </div>
 
       <div className="button-container">
-        <Link to={`/nc-final-project/${group_slug}/ar`}>
+        <Link to={`/${group_slug}/ar`}>
           <button className="join-button">View in AR</button>
         </Link>
-        <Link to={`/nc-final-project/${group_slug}/map`}>
+        <Link to={`/${group_slug}/map`}>
           <button className="create-button">View in 2D</button>
         </Link>
       </div>
