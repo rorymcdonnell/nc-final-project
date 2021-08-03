@@ -102,7 +102,7 @@ const LandingPage = ({ setUsername, setGroupName }) => {
           </div>
         )}
         {!groupPageDisabled && (
-          <Link to={`/${groupName}`}>
+          <Link to={`/nc-final-project/${groupName}`}>
             <button className="group-button" id="group-page-button">
               Group Page
             </button>
