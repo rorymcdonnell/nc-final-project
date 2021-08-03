@@ -3,33 +3,23 @@ import { getGroupData } from '../utils/api';
 import { Entity, Scene } from 'aframe-react';
 
 const Marker = ({ location, groupData }) => {
-  const [refreshedData, setGroupData] = useState(groupData);
   const groupName = localStorage.getItem('groupName');
 
   useEffect(() => {
-    initialSetData();
-    refreshData();
+    setData();
   }, []);
 
-  const refreshData = async () => {
-    setInterval(async () => {
-      await initialSetData();
-      document.getElementById('arjs-video').remove();
-    }, 60000);
-  };
-
-  const initialSetData = async () => {
-    setGroupData(await getGroupData(groupName));
+  const setData = async () => {
     setHTML();
   };
 
   const setHTML = () => {
-    const lookupObj = Object.keys(refreshedData);
+    const lookupObj = Object.keys(groupData);
 
-    let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/#/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera><div id='members'>`;
+    let html = `<a href='http://localhost:3000/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene vr-mode-ui="enabled: false" embedded><a-camera gps-camera rotation-reader></a-camera><div id='members'>`;
 
     lookupObj.forEach((member) => {
-      html += `<a-box color="yellow" gps-entity-place="latitude: ${refreshedData[member].position.latitude}; longitude: ${refreshedData[member].position.longitude}"></a-box>`;
+      html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
     });
 
     html += `</div></a-scene>`;
