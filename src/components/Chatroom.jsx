@@ -13,7 +13,7 @@ const Chatroom = () => {
   const groupName = localStorage.getItem("groupName");
   const messagesRef = firestore.collection("messages");
 
-  const query = messagesRef.orderBy("createdAt").limit(3);
+  const query = messagesRef.orderBy("createdAt");
 
   const [formVal, setFormVal] = useState("");
 
@@ -41,29 +41,29 @@ const Chatroom = () => {
       <div style={{ position: "absolute" }}>
         <Particle height="100vh" width="100vw" params={particlesConfig} />
       </div>
-      <div>
-        <NavBar />
-        <h2>{groupName}'s Chat</h2>
-        <div className="chatbox">
-          {messages &&
-            messages.map((message) => (
+      <NavBar />
+      <h2>{groupName}'s Chat</h2>
+      <div className="chatbox">
+        {messages &&
+          messages
+            .filter((message) => message.groupName === groupName)
+            .map((message) => (
               <ChatMessage key={message.id} message={message} />
             ))}
-          <div ref={dummy}></div>
-        </div>
-        <form onSubmit={sendMessage}>
-          <input
-            className="chat-input"
-            value={formVal}
-            onChange={(event) => {
-              setFormVal(event.target.value);
-            }}
-          ></input>{" "}
-          <button className="submit-button" type="submit">
-            Send
-          </button>
-        </form>
+        <div ref={dummy}></div>
       </div>
+      <form onSubmit={sendMessage}>
+        <input
+          className="chat-input"
+          value={formVal}
+          onChange={(event) => {
+            setFormVal(event.target.value);
+          }}
+        ></input>{" "}
+        <button className="submit-button" type="submit" disabled={!formVal}>
+          Send
+        </button>
+      </form>
     </div>
   );
 };

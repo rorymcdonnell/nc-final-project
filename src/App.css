@@ -163,6 +163,24 @@ h1 {
     z-index: 12;
     position: relative;
   }
+
+  .submit-button {
+    color: white;
+    width: 30%;
+    height: 5rem;
+    margin: 2rem auto 0 auto;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: black;
+    font-size: large;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: -4px -4px 4px rgb(96 96 96 / 32%), 4px 4px 4px rgb(0 0 0 / 32%);
+    background-image: linear-gradient(#70f094, #349420);
+    border-radius: 80px;
+    z-index: 12;
+    position: relative;
+  }
 }
 
 .landing-page input {
@@ -283,49 +301,74 @@ h1 {
 }
 
 /* chatroom css */
+
 .chat-page {
-  text-align: center;
-  background-color: #40c9b0;
-  margin-bottom: 0;
-  /* padding-bottom: 10%; */
-  height: 100vh;
-}
-.chatbox {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 100vh;
+  background-color: #40c9b0;
+  overflow: hidden;
 }
 
-.message {
+.chatbox {
+  padding: 10px;
+  height: 100vh;
+  margin: 10vh 0 10vh;
+  overflow-y: scroll;
   display: flex;
-  margin: 5%;
-  border-radius: 5px;
+  flex-direction: column;
 }
 
+.chat-page form {
+  height: 10vh;
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  max-width: 728px;
+  font-size: 1.5rem;
+}
 .message-sent {
   flex-direction: row-reverse;
   background-color: #c6ff91;
-  align-self: flex-end;
   height: 2em;
-  text-indent: 20px;
+  text-indent: 10px;
   line-height: 2em;
+  max-width: 150px;
+  margin-bottom: 5px;
+  margin-left: 50%;
+  line-height: 24px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  position: relative;
+  color: black;
+  text-align: left;
+  object-position: right;
 }
 
 .message-received {
   align-self: flex-end;
   background-color: white;
   height: 2em;
-  text-indent: 20px;
+  text-indent: 10px;
   line-height: 2em;
+  max-width: 150px;
+  margin-bottom: 5px;
+  line-height: 24px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  position: relative;
+  color: black;
+  text-align: left;
+  object-position: right;
 }
 .username-received {
   text-align: left;
-  text-indent: 20px;
+  text-indent: 10px;
 }
 
 .username-sent {
   text-align: right;
-  text-indent: 15px;
 }
 
 .submit-button {
@@ -345,12 +388,18 @@ h1 {
   z-index: 12;
   position: relative;
   padding: 5px;
+  display: inline-block;
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .chat-input {
   line-height: 1.5;
   width: 60%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: black;
   outline: none;
   border: 2px solid;
@@ -358,5 +407,4 @@ h1 {
   padding: 0 5px;
   z-index: 2;
   position: relative;
-  display: inline;
 }

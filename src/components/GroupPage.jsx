@@ -104,10 +104,10 @@ const GroupPage = ({ groupData, setGroupData }) => {
         <Link to={`/${group_slug}/map`}>
           <button className="create-button">View in 2D</button>
         </Link>
-        <Link to={`/${groupName}/chatroom`}>
-          <button className="group-button">Group Chatroom</button>
-        </Link>
       </div>
+      <Link to={`/${groupName}/chatroom`}>
+        <button className="group-button">Group Chatroom</button>
+      </Link>
     </div>
   );
 };
