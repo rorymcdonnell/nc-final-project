@@ -24,12 +24,13 @@ const Marker = ({ location, groupData }) => {
   };
 
   const setHTML = () => {
-    const lookupObj = Object.keys(groupData);
+    const lookupObj = Object.keys(refreshedData);
 
-    let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene><a-camera gps-camera rotation-reader></a-camera><div id='members'>`;
+    let html = `<a href='http://localhost:3000/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene embedded
+    "><a-camera minDistance=2.5 gps-camera rotation-reader></a-camera><div id='members'>`;
 
     lookupObj.forEach((member) => {
-      html += `<a-circle scale="100 100 100" color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
+      html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
     });
 
     html += `</div></a-scene>`;
