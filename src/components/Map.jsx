@@ -88,10 +88,10 @@ const Map = ({ time }) => {
       .then((response) => {
         setIsLoading(false);
       });
-  }, [time]);
+  }, [time, group_slug]);
 
   return (
-    <div classname="map-container">
+    <div className="map-container">
       {!isLoading ? (
         <div>
           <button className="map-exit-btn">Return to Group Page</button>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-const Marker = ({ location, groupData }) => {
+const Marker = ({ groupData }) => {
   const groupName = localStorage.getItem('groupName');
 
   useEffect(() => {
     setHTML();
-  }, []);
+  });
 
   const colors = [
     'orange',

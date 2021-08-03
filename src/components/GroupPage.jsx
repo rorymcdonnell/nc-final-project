@@ -1,5 +1,4 @@
-import { GroupContext } from '../contexts/groupContext';
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import NavBar from './NavigationBar';
 import { Link, useParams } from 'react-router-dom';
 import { getGroupData } from '../utils/api';
@@ -21,7 +20,7 @@ const GroupPage = ({ groupData, setGroupData, time }) => {
       setLookupObj(Object.keys(response));
       setIsLoading(false);
     });
-  }, [time]);
+  }, [time, groupName, setGroupData]);
 
   // Distance between 2 people function
   const geolocation = useGeolocation();

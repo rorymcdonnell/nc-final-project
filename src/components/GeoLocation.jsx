@@ -5,12 +5,10 @@ import { sendData } from '../utils/api';
 const GeoLocation = ({ username, groupName, time, setTime }) => {
   const geolocation = useGeolocation();
   setInterval(setTime(geolocation.timestamp), 5000);
-  console.log(username);
-  console.log(groupName);
+
   useEffect(() => {
-    console.log(time);
     sendData(groupName, username, geolocation.latitude, geolocation.longitude);
-  }, [time]);
+  }, [time, groupName, username, geolocation.latitude, geolocation.longitude]);
 
   return <div></div>;
 };
