@@ -225,29 +225,24 @@ h1 {
   text-align: center;
   background-color: #40c9b0;
   margin-bottom: 0;
-  /* padding-bottom: 10%; */
   height: 100%;
-  overflow-y: auto;
 }
 .group-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "users distance";
-  overflow: scroll;
 }
 .group-list {
-  /* display: flex; */
   list-style: none;
   font-size: large;
-  text-align: left;
+  text-align: center;
   grid-area: users;
 }
 .distance-list {
-  /* display: flex; */
   list-style: none;
   font-size: large;
-  text-align: left;
+  text-align: center;
   grid-area: distance;
 }
 .user-heading {
