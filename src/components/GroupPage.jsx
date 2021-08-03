@@ -46,8 +46,6 @@ const GroupPage = ({ groupData, setGroupData }) => {
 
     return d;
   };
-  console.log("groupData", groupData);
-  console.log(geolocation.latitude, geolocation.longitude);
 
   if (isLoading) {
     return (
@@ -90,7 +88,6 @@ const GroupPage = ({ groupData, setGroupData }) => {
         <ul className="distance-list">
           <li className="user-heading">{`Distance from you`}</li>
           {lookupObj.map((member) => {
-            console.log("distances", distance(member));
             return (
               <li key={member + member}>
                 <p>{`${Math.round(`${distance(member)}`)}m`}</p>
