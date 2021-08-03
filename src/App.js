@@ -16,7 +16,7 @@ function App() {
   const [groupData, setGroupData] = useState(null);
 
   return (
-    <HashRouter basename="/">
+    <HashRouter forceRefresh={true} basename="/">
       <div>
         {username !== '' && groupName !== '' ? (
           <GeoLocation
