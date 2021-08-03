@@ -91,32 +91,37 @@ const Map = ({ time }) => {
   }, [time]);
 
   return (
-    <div>
+    <div classname="map-container">
       {!isLoading ? (
-        <MapContainer
-          center={[52.675541, 1.23128]} //change to users location
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {lookupObj.map((member, index) => {
-            const lat = groupData[member].position.latitude;
-            const lng = groupData[member].position.longitude;
-            const finalPosition = [lat, lng];
-            return (
-              <Marker
-                key={member}
-                position={finalPosition}
-                icon={colors[index]}
-              >
-                <Popup> Name: {member}</Popup>
-              </Marker>
-            );
-          })}
-        </MapContainer>
+        <div>
+          <button className="map-exit-btn">Return to Group Page</button>
+          <div>
+            <MapContainer
+              center={[52.675541, 1.23128]} //change to users location
+              zoom={13}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {lookupObj.map((member, index) => {
+                const lat = groupData[member].position.latitude;
+                const lng = groupData[member].position.longitude;
+                const finalPosition = [lat, lng];
+                return (
+                  <Marker
+                    key={member}
+                    position={finalPosition}
+                    icon={colors[index]}
+                  >
+                    <Popup> Name: {member}</Popup>
+                  </Marker>
+                );
+              })}
+            </MapContainer>
+          </div>
+        </div>
       ) : (
         '...isLoading'
       )}
