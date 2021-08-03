@@ -7,7 +7,7 @@ import Particle from 'react-particles-js';
 import particlesConfig from '../assets/particlesConfig.json';
 import useGeolocation from 'react-hook-geolocation';
 
-const GroupPage = ({ groupData, setGroupData }) => {
+const GroupPage = ({ groupData, setGroupData, time }) => {
   const { group_slug } = useParams();
   const [lookupObj, setLookupObj] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +21,7 @@ const GroupPage = ({ groupData, setGroupData }) => {
       setLookupObj(Object.keys(response));
       setIsLoading(false);
     });
-  }, []);
+  }, [time]);
 
   // Distance between 2 people function
   const geolocation = useGeolocation();

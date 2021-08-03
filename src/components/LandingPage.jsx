@@ -1,9 +1,9 @@
 import NavBar from './NavigationBar';
-import { Link, useParams, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { checkGroupExists, sendData } from '../utils/api';
 import useGeolocation from 'react-hook-geolocation';
-import GroupPage from './GroupPage';
+
 import Particle from 'react-particles-js';
 import particlesConfig from '../assets/particlesConfig.json';
 
@@ -15,7 +15,6 @@ const LandingPage = ({ setUsername, setGroupName }) => {
 
   const geolocation = useGeolocation();
 
-  const myStorage = window.localStorage;
   const groupName = localStorage.getItem('groupName');
   const username = localStorage.getItem('username');
 
@@ -30,6 +29,8 @@ const LandingPage = ({ setUsername, setGroupName }) => {
         ) {
           localStorage.setItem('groupName', groupCheck);
           localStorage.setItem('username', userCheck);
+          setGroupName(localStorage.getItem('groupName'));
+          setUsername(localStorage.getItem('username'));
           sendData(
             groupName,
             username,
@@ -51,8 +52,12 @@ const LandingPage = ({ setUsername, setGroupName }) => {
     switch (e.target.innerHTML) {
       case 'Create Group':
         checkInputs('create');
+        break;
       case 'Join a Group':
         checkInputs('join');
+        break;
+      default:
+        return 'Incorrect selection';
     }
   };
 
