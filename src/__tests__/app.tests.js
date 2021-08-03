@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import App from "../App.js";
+import LandingPage from "../components/LandingPage";
 import userEvent from "@testing-library/user-event";
 
 test("renders learn react link", () => {
@@ -21,12 +22,7 @@ test("renders a button join group", () => {
 });
 
 test("click", () => {
-  render(
-    <div>
-      <label htmlFor="checkbox">Check</label>
-      <input id="checkbox" type="checkbox" />
-    </div>
-  );
+  render(<LandingPage />);
 
   userEvent.click(screen.getByText("Check"));
   expect(screen.getByLabelText("Check")).toBeChecked();

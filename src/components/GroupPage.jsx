@@ -86,7 +86,7 @@ const GroupPage = ({ groupData, setGroupData }) => {
         </ul>
 
         <ul className="distance-list">
-          <li className="user-heading">{`Distance from you`}</li>
+          <li className="user-heading">{`Distance`}</li>
           {lookupObj.map((member) => {
             return (
               <li key={member + member}>
