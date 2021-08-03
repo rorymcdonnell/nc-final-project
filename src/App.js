@@ -11,7 +11,7 @@ import GeoLocation from './components/GeoLocation';
 function App() {
   const [username, setUsername] = useState('');
   const [groupName, setGroupName] = useState('');
-  const [location, setLocation] = useState('');
+
   const [time, setTime] = useState('');
   const [groupData, setGroupData] = useState(null);
 
@@ -47,7 +47,7 @@ function App() {
                 <Map time={time} />
               </Route>
               <Route exact path="/:group_slug/ar">
-                <Marker groupData={groupData} location={location} />
+                <Marker groupData={groupData} />
               </Route>
             </Switch>
           </div>
