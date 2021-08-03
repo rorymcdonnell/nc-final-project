@@ -29,7 +29,7 @@ const Marker = ({ location, groupData }) => {
     let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene><a-camera gps-camera rotation-reader></a-camera><div id='members'>`;
 
     lookupObj.forEach((member) => {
-      html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
+      html += `<a-circle scale="100 100 100" color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
     });
 
     html += `</div></a-scene>`;
