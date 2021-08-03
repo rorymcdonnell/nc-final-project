@@ -73,6 +73,14 @@ const GroupPage = ({ groupData, setGroupData }) => {
       <NavBar />
       <h2>{group_slug}</h2>
       <h4>Welcome {username}</h4>
+      <div className="button-container">
+        <Link to={`/${group_slug}/ar`}>
+          <button className="join-button">View in AR</button>
+        </Link>
+        <Link to={`/${group_slug}/map`}>
+          <button className="create-button">View in 2D</button>
+        </Link>
+      </div>
       <div className="group-container">
         <ul className="group-list">
           <li className="user-heading">Group Members</li>
@@ -84,7 +92,6 @@ const GroupPage = ({ groupData, setGroupData }) => {
             );
           })}
         </ul>
-
         <ul className="distance-list">
           <li className="user-heading">{`Distance`}</li>
           {lookupObj.map((member) => {
@@ -95,15 +102,6 @@ const GroupPage = ({ groupData, setGroupData }) => {
             );
           })}
         </ul>
-      </div>
-
-      <div className="button-container">
-        <Link to={`/${group_slug}/ar`}>
-          <button className="join-button">View in AR</button>
-        </Link>
-        <Link to={`/${group_slug}/map`}>
-          <button className="create-button">View in 2D</button>
-        </Link>
       </div>
     </div>
   );
