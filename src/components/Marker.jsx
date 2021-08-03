@@ -30,7 +30,7 @@ const Marker = ({ location, groupData }) => {
     "><a-camera minDistance=2.5 gps-camera rotation-reader></a-camera><div id='members'>`;
 
     lookupObj.forEach((member) => {
-      html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
+      html += `<a-box color="yellow" gps-entity-place="latitude: ${refreshedData[member].position.latitude}; longitude: ${refreshedData[member].position.longitude}"></a-box>`;
     });
 
     html += `</div></a-scene>`;
