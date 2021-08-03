@@ -90,15 +90,17 @@ const LandingPage = ({ setUsername, setGroupName }) => {
           <p>{error && error}</p>
         </label>
         <br />
-        <div className="button-container">
-          <button className="create-button" onClick={handleClick}>
-            Create Group
-          </button>
-          <br />
-          <button className="join-button" onClick={handleClick}>
-            Join a Group
-          </button>
-        </div>
+        {groupPageDisabled && (
+          <div className="button-container">
+            <button className="create-button" onClick={handleClick}>
+              Create Group
+            </button>
+            <br />
+            <button className="join-button" onClick={handleClick}>
+              Join a Group
+            </button>
+          </div>
+        )}
         {!groupPageDisabled && (
           <Link to={`/nc-final-project/${groupName}`}>
             <button className="group-button" id="group-page-button">
