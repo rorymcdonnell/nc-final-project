@@ -26,7 +26,7 @@ const Marker = ({ location, groupData }) => {
   const setHTML = () => {
     const lookupObj = Object.keys(groupData);
 
-    let html = `<a href='http://localhost:3000/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene><a-camera gps-camera='maxDistance: 0' rotation-reader></a-camera><div id='members'>`;
+    let html = `<a href='https://rorymcdonnell.github.io/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene><a-camera gps-camera='maxDistance: 0' arjs-look-controls='smoothingFactor: 0.1 rotation-reader></a-camera><div id='members'>`;
 
     lookupObj.forEach((member) => {
       html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
