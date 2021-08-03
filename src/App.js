@@ -26,7 +26,6 @@ function App() {
             setTime={setTime}
           />
         ) : null}
-
         <GroupContext.Provider value={{ groupName, setGroupName }}>
           <div className="App">
             <Switch>
