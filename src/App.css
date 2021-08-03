@@ -283,29 +283,49 @@ h1 {
 }
 
 /* chatroom css */
-
-.chatroom {
+.chat-page {
+  text-align: center;
+  background-color: #40c9b0;
+  margin-bottom: 0;
+  /* padding-bottom: 10%; */
+  height: 100vh;
+}
+.chatbox {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
 }
 
 .message {
   display: flex;
-  align-items: center;
   margin: 5%;
+  border-radius: 5px;
 }
 
-.sent {
+.message-sent {
   flex-direction: row-reverse;
   background-color: #c6ff91;
   align-self: flex-end;
+  height: 2em;
+  text-indent: 20px;
+  line-height: 2em;
 }
 
-.received {
+.message-received {
   align-self: flex-end;
   background-color: white;
+  height: 2em;
+  text-indent: 20px;
+  line-height: 2em;
+}
+.username-received {
+  text-align: left;
+  text-indent: 20px;
+}
+
+.username-sent {
+  text-align: right;
+  text-indent: 15px;
 }
 
 .submit-button {
@@ -324,6 +344,7 @@ h1 {
   border-radius: 80px;
   z-index: 12;
   position: relative;
+  padding: 5px;
 }
 
 .chat-input {
@@ -334,9 +355,8 @@ h1 {
   outline: none;
   border: 2px solid;
   border-color: black;
-  padding: 0 10px;
+  padding: 0 5px;
   z-index: 2;
   position: relative;
-}
-.username {
+  display: inline;
 }

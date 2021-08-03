@@ -1,19 +1,17 @@
-import { useState } from "react";
-
 const ChatMessage = (props) => {
-  console.log(props);
   const user = localStorage.getItem("username");
+  const group = localStorage.getItem("groupName");
   const { text, id, username, groupName } = props.message;
 
   const messageType = username === user ? "sent" : "received";
 
   return (
     <div>
-      <div className="username">{`${username}:`}</div>
-      <div className={`message ${messageType}`} id={`${id}`}>
+      <p className={`username-${messageType}`}>{`${username}`}</p>
+      <p className={`message-${messageType}`} id={`${id}`}>
         {" "}
         {`${text}`}
-      </div>
+      </p>
     </div>
   );
 };

@@ -12,7 +12,9 @@ const Chatroom = () => {
   const username = localStorage.getItem("username");
   const groupName = localStorage.getItem("groupName");
   const messagesRef = firestore.collection("messages");
-  const query = messagesRef.orderBy("createdAt").limit(25);
+
+  const query = messagesRef.orderBy("createdAt").limit(3);
+
   const [formVal, setFormVal] = useState("");
 
   const [messages] = useCollectionData(query, { idField: "id" });
@@ -28,11 +30,12 @@ const Chatroom = () => {
     });
 
     setFormVal("");
+    dummy.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div
-      className="chatroom"
+      className="chat-page"
       style={{ position: "relative", overflow: "hidden" }}
     >
       <div style={{ position: "absolute" }}>
@@ -41,7 +44,7 @@ const Chatroom = () => {
       <div>
         <NavBar />
         <h2>{groupName}'s Chat</h2>
-        <div>
+        <div className="chatbox">
           {messages &&
             messages.map((message) => (
               <ChatMessage key={message.id} message={message} />
