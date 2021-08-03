@@ -7,6 +7,7 @@ import { GroupContext } from "./contexts/groupContext";
 import Map from "./components/Map";
 import Marker from "./components/Marker";
 import GeoLocation from "./components/GeoLocation";
+import Chatroom from "./components/Chatroom";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -45,6 +46,9 @@ function App() {
               </Route>
               <Route exact path="/:group_slug/ar">
                 <Marker groupData={groupData} location={location} />
+              </Route>
+              <Route exact path="/:group_slug/chatroom">
+                <Chatroom />
               </Route>
             </Switch>
           </div>

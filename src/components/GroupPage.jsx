@@ -105,6 +105,9 @@ const GroupPage = ({ groupData, setGroupData }) => {
           <button className="create-button">View in 2D</button>
         </Link>
       </div>
+      <Link to={`/${groupName}/chatroom`}>
+        <button className="group-button">Group Chatroom</button>
+      </Link>
     </div>
   );
 };

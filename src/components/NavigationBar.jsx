@@ -22,6 +22,14 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
+          <Link
+            to={`/${groupName}/chatroom`}
+            style={{ textDecoration: "none" }}
+          >
+            Chatroom
+          </Link>
+        </li>
+        <li>
           <Link to="/" style={{ textDecoration: "none" }}>
             About
           </Link>
