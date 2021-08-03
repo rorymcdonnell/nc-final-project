@@ -96,7 +96,7 @@ const Map = ({ time }) => {
     <div className="map-container">
       {!isLoading ? (
         <div>
-          <Link to={`http://localhost:3000/nc-final-project/${groupName}`}>
+          <Link to={`/${groupName}`}>
             <button className="map-exit-btn">Return to Group Page</button>
           </Link>
           <div>
