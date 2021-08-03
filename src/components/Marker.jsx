@@ -2,82 +2,43 @@ import React, { useEffect, useState } from 'react';
 import { getGroupData } from '../utils/api';
 import { Entity, Scene } from 'aframe-react';
 
-const Marker = ({ location }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  // const [groupData, setGroupData] = useState('');
-  // const [lookupObj, setLookupObj] = useState('');
-
+const Marker = ({ location, groupData }) => {
+  const [refreshedData, setGroupData] = useState(groupData);
   const groupName = localStorage.getItem('groupName');
 
-  // useEffect(() => {
-  //   getGroupData(groupName)
-  //     .then((response) => {
-  //       setGroupData(response);
-  //       setLookupObj(Object.keys(groupData));
-  //       console.log(lookupObj);
-  //     })
-  //     .then((response) => {
-  //       setIsLoading(false);
-  //       AR();
-  //     });
-  // }, [location]);
+  useEffect(() => {
+    initialSetData();
+    refreshData();
+  }, []);
 
-  // const AR = () => {
-  //   if (!isLoading) {
-  //     let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
-  //     lookupObj.forEach((member) => {
-  //       html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
-  //     });
-  //     html += `</a-scene>`;
-  //     let wrapper = document.createElement('div');
-  //     wrapper.innerHTML = html;
-  //     document.body.appendChild(wrapper);
-  //   }
-  // };
-
-  const groupData = {
-    Aaron: {
-      position: {
-        latitude: 52.67567031124288,
-        longitude: 1.2313851629922208
-      }
-    },
-    Chris: {
-      position: {
-        latitude: 52.681113599999996,
-        longitude: 1.2320768
-      }
-    },
-    John: {
-      position: {
-        latitude: 52.675717999999996,
-        longitude: 1.2313607
-      }
-    }
+  const refreshData = async () => {
+    setInterval(async () => {
+      await initialSetData();
+      document.getElementById('arjs-video').remove();
+    }, 60000);
   };
 
-  let lookupObj = Object.keys(groupData);
+  const initialSetData = async () => {
+    setGroupData(await getGroupData(groupName));
+    setHTML();
+  };
 
-  let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene artoolkit vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
-  lookupObj.forEach((member) => {
-    html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"/>`;
-  });
-  html += `</a-scene>`;
-  let wrapper = document.createElement('div');
-  wrapper.innerHTML = html;
-  document.body.appendChild(wrapper);
+  const setHTML = () => {
+    const lookupObj = Object.keys(groupData);
 
-  return <div></div>;
-  // (
-  //   <Scene>
-  //     <a-camera gps-camera rotation reader></a-camera>
-  //     <Entity
-  //       primitive="a-box"
-  //       gps-entity-place="latitude: 52; longitude: 1.2"
-  //       color="blue"
-  //     />
-  //   </Scene>
-  // );
+    let html = `<a href='http://localhost:3000/nc-final-project/${groupName}'><button class="a-enter-vr-button">Exit</button></a><a-scene embedded
+    "><a-camera minDistance=10 gps-camera rotation-reader></a-camera><div id='members'>`;
+
+    lookupObj.forEach((member) => {
+      html += `<a-box color="yellow" gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
+    });
+
+    html += `</div></a-scene>`;
+    let wrapper = document.getElementById('unbelieveAbleScenes');
+    wrapper.innerHTML = html;
+  };
+
+  return <div id="unbelieveAbleScenes"></div>;
 };
 
 export default Marker;

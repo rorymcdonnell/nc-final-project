@@ -7,9 +7,8 @@ import Particle from "react-particles-js";
 import particlesConfig from "../assets/particlesConfig.json";
 import useGeolocation from "react-hook-geolocation";
 
-const GroupPage = () => {
+const GroupPage = ({ groupData, setGroupData }) => {
   const { group_slug } = useParams();
-  const [groupData, setGroupData] = useState("");
   const [lookupObj, setLookupObj] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
