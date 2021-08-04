@@ -11,24 +11,12 @@ const Marker = ({ groupData }) => {
     'blue',
     'green',
     'red',
+    'yellow',
     'orange',
     'blue',
     'green',
     'red',
-    'orange',
-    'blue',
-    'green',
-    'red',
-    'orange',
-    'blue',
-    'green',
-    'red',
-    'green',
-    'red',
-    'orange',
-    'blue',
-    'green',
-    'red'
+    'yellow'
   ];
 
   const setHTML = () => {
@@ -38,7 +26,7 @@ const Marker = ({ groupData }) => {
     let html = `<a href='https://rorymcdonnell.github.io/nc-final-project/'><button class="a-enter-vr-button">Exit</button></a><a-scene vr-mode-ui="enabled: false"><a-camera gps-camera rotation-reader></a-camera>`;
 
     lookupObj.forEach((member) => {
-      html += `<a-box color=${colors[counter]} gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
+      html += `<a-circle color=${colors[counter]} gps-entity-place="latitude: ${groupData[member].position.latitude}; longitude: ${groupData[member].position.longitude}"></a-box>`;
       counter++;
     });
 
