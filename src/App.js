@@ -30,22 +30,12 @@ function App() {
         <GroupContext.Provider value={{ groupName, setGroupName }}>
           <div className="App">
             <Switch>
-              {username !== '' && groupName !== '' ? (
-                <Route exact path="/:group_slug">
-                  <GroupPage
-                    groupData={groupData}
-                    setGroupData={setGroupData}
-                    time={time}
-                  />
-                </Route>
-              ) : (
-                <Route exact path="/">
-                  <LandingPage
-                    setUsername={setUsername}
-                    setGroupName={setGroupName}
-                  />
-                </Route>
-              )}
+              <Route exact path="/">
+                <LandingPage
+                  setUsername={setUsername}
+                  setGroupName={setGroupName}
+                />
+              </Route>
               <Route exact path="/:group_slug">
                 <GroupPage
                   groupData={groupData}
