@@ -329,7 +329,6 @@ h1 {
 
 .chatbox {
   padding: 10px;
-
   margin: 10vh 0 10vh;
   display: flex;
   flex-direction: column;
@@ -377,6 +376,7 @@ h1 {
   text-align: left;
   object-position: right;
 }
+
 .username-received {
   text-align: left;
   text-indent: 10px;

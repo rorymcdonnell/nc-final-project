@@ -80,9 +80,12 @@ const GroupPage = ({ groupData, setGroupData, time }) => {
           <button className="create-button">View in 2D</button>
         </Link>
       </div>
+      <Link to={`/${groupName}/chatroom`}>
+        <button className="group-button">Group Chatroom</button>
+      </Link>
       <div className="group-container">
         <ul className="group-list">
-          <li className="user-heading">Group Members</li>
+          <li className="user-heading">Members</li>
           {lookupObj.map((member) => {
             return (
               <li key={member}>
@@ -102,18 +105,6 @@ const GroupPage = ({ groupData, setGroupData, time }) => {
           })}
         </ul>
       </div>
-
-      <div className="button-container">
-        <Link to={`/${group_slug}/ar`}>
-          <button className="join-button">View in AR</button>
-        </Link>
-        <Link to={`/${group_slug}/map`}>
-          <button className="create-button">View in 2D</button>
-        </Link>
-      </div>
-      <Link to={`/${groupName}/chatroom`}>
-        <button className="group-button">Group Chatroom</button>
-      </Link>
     </div>
   );
 };
