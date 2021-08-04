@@ -32,6 +32,7 @@ h1 {
   padding-bottom: 0;
   color: #40c9b0;
   height: 100vh;
+  font-weight: 700;
 }
 
 .landing-form {
@@ -272,7 +273,19 @@ h1 {
   text-align: center;
   background-color: #40c9b0;
   margin-bottom: 0;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+  color: white;
+  font-weight: 700;
+  zoom: 100%;
+}
+.group-greeting {
+  font-weight: 700;
+  font-size: 2rem;
+}
+.group-name {
+  font-size: 2.5rem;
 }
 .group-page h2 {
   margin: 30px;
@@ -342,6 +355,12 @@ h1 {
   flex-direction: column;
   justify-content: center;
   background-color: #40c9b0;
+}
+
+.chat-page-title {
+  color: white;
+  font-weight: 700;
+  font-size: 2.2rem;
 }
 
 .chatbox {

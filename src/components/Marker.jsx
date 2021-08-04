@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 
 const Marker = ({ groupData }) => {
-  const groupName = localStorage.getItem('groupName');
-
+  const groupName = localStorage.getItem(groupName);
   useEffect(() => {
     setHTML();
   });
@@ -12,24 +11,12 @@ const Marker = ({ groupData }) => {
     'blue',
     'green',
     'red',
+    'yellow',
     'orange',
     'blue',
     'green',
     'red',
-    'orange',
-    'blue',
-    'green',
-    'red',
-    'orange',
-    'blue',
-    'green',
-    'red',
-    'green',
-    'red',
-    'orange',
-    'blue',
-    'green',
-    'red'
+    'yellow'
   ];
 
   const setHTML = () => {

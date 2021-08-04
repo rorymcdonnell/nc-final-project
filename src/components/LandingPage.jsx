@@ -20,6 +20,10 @@ const LandingPage = ({ setUsername, setGroupName }) => {
 
   const checkInputs = async (button) => {
     if (groupCheck.length === 0 || userCheck.length === 0) {
+      setError("Please provide valid inputs");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     } else {
       checkGroupExists(groupCheck).then((response) => {
         if (
@@ -39,8 +43,14 @@ const LandingPage = ({ setUsername, setGroupName }) => {
           setGroupPageDisabled(false);
         } else if (button === "create") {
           setError("That group exists, please try again");
+          setTimeout(() => {
+            setError("");
+          }, 3000);
         } else {
           setError("That group doesn't exist, please try again");
+          setTimeout(() => {
+            setError("");
+          }, 3000);
         }
       });
     }
