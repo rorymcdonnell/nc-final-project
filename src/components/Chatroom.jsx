@@ -42,7 +42,7 @@ const Chatroom = () => {
         <Particle height="100vh" width="100vw" params={particlesConfig} />
       </div>
       <NavBar />
-      <h2>{groupName}'s Chat</h2>
+      <h1>{groupName}'s Chat</h1>
       <div className="chatbox">
         {messages &&
           messages
@@ -52,18 +52,20 @@ const Chatroom = () => {
             ))}
         <div ref={dummy}></div>
       </div>
-      <form onSubmit={sendMessage}>
-        <input
-          className="chat-input"
-          value={formVal}
-          onChange={(event) => {
-            setFormVal(event.target.value);
-          }}
-        ></input>{" "}
-        <button className="submit-button" type="submit" disabled={!formVal}>
-          Send
-        </button>
-      </form>
+      <div className="form-inline">
+        <form onSubmit={sendMessage}>
+          <textarea
+            className="chat-input"
+            value={formVal}
+            onChange={(event) => {
+              setFormVal(event.target.value);
+            }}
+          ></textarea>{" "}
+          <button className="submit-button" type="submit" disabled={!formVal}>
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

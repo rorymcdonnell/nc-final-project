@@ -2,9 +2,9 @@ const ChatMessage = (props) => {
   const user = localStorage.getItem("username");
   const group = localStorage.getItem("groupName");
   const { text, id, username, groupName } = props.message;
+  const { setIsLoading } = props;
 
   const messageType = username === user ? "sent" : "received";
-
   return (
     <div>
       <p className={`username-${messageType}`}>{`${username}`}</p>
