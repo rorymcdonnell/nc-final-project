@@ -4,7 +4,6 @@ const ChatMessage = (props) => {
   const { text, id, username, groupName } = props.message;
 
   const messageType = username === user ? "sent" : "received";
-
   return (
     <div>
       <p className={`username-${messageType}`}>{`${username}`}</p>

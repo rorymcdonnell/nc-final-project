@@ -56,7 +56,7 @@ const GroupPage = ({ groupData, setGroupData, time }) => {
           <Particle height="100vh" width="100vw" params={particlesConfig} />
         </div>
         <NavBar />
-        <h1>LOADING...</h1>
+        <h1 className="loader">LOADING...</h1>
       </div>
     );
   }
