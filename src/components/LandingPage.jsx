@@ -1,6 +1,6 @@
 import NavBar from "./NavigationBar";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { checkGroupExists, sendData } from "../utils/api";
 import useGeolocation from "react-hook-geolocation";
 
@@ -20,7 +20,6 @@ const LandingPage = ({ setUsername, setGroupName }) => {
 
   const checkInputs = async (button) => {
     if (groupCheck.length === 0 || userCheck.length === 0) {
-      setError("Invalid Inputs");
     } else {
       checkGroupExists(groupCheck).then((response) => {
         if (
