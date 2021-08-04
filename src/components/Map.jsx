@@ -127,7 +127,7 @@ const Map = ({ time }) => {
           </div>
         </div>
       ) : (
-        "...isLoading"
+        <h1>LOADING...</h1>
       )}
     </div>
   );

@@ -42,7 +42,7 @@ const Chatroom = () => {
         <Particle height="100vh" width="100vw" params={particlesConfig} />
       </div>
       <NavBar />
-      <h2>{groupName}'s Chat</h2>
+      <h2 className="chat-page-title">{groupName}'s Chat</h2>
       <div className="chatbox">
         {messages &&
           messages
