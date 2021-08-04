@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import { getGroupData } from "../utils/api";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router-dom";
 
-const Map = ({ location }) => {
+const Map = ({ time }) => {
+  const groupName = localStorage.getItem("groupName");
+
   const [groupData, setGroupData] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [lookupObj, setLookupObj] = useState([]);
@@ -88,35 +90,42 @@ const Map = ({ location }) => {
       .then((response) => {
         setIsLoading(false);
       });
-  }, [location]);
+  }, [time, group_slug]);
 
   return (
-    <div>
+    <div className="map-container">
       {!isLoading ? (
-        <MapContainer
-          center={[52.675541, 1.23128]} //change to users location
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {lookupObj.map((member, index) => {
-            const lat = groupData[member].position.latitude;
-            const lng = groupData[member].position.longitude;
-            const finalPosition = [lat, lng];
-            return (
-              <Marker
-                key={member}
-                position={finalPosition}
-                icon={colors[index]}
-              >
-                <Popup> Name: {member}</Popup>
-              </Marker>
-            );
-          })}
-        </MapContainer>
+        <div>
+          <Link to={`/${groupName}`}>
+            <button className="map-exit-btn">Return to Group Page</button>
+          </Link>
+          <div>
+            <MapContainer
+              center={[52.675541, 1.23128]} //change to users location
+              zoom={13}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {lookupObj.map((member, index) => {
+                const lat = groupData[member].position.latitude;
+                const lng = groupData[member].position.longitude;
+                const finalPosition = [lat, lng];
+                return (
+                  <Marker
+                    key={member}
+                    position={finalPosition}
+                    icon={colors[index]}
+                  >
+                    <Popup> Name: {member}</Popup>
+                  </Marker>
+                );
+              })}
+            </MapContainer>
+          </div>
+        </div>
       ) : (
         "...isLoading"
       )}

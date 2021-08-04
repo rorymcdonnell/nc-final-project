@@ -1,5 +1,4 @@
-import { GroupContext } from "../contexts/groupContext";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import NavBar from "./NavigationBar";
 import { Link, useParams } from "react-router-dom";
 import { getGroupData } from "../utils/api";
@@ -7,7 +6,7 @@ import Particle from "react-particles-js";
 import particlesConfig from "../assets/particlesConfig.json";
 import useGeolocation from "react-hook-geolocation";
 
-const GroupPage = ({ groupData, setGroupData }) => {
+const GroupPage = ({ groupData, setGroupData, time }) => {
   const { group_slug } = useParams();
   const [lookupObj, setLookupObj] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +20,7 @@ const GroupPage = ({ groupData, setGroupData }) => {
       setLookupObj(Object.keys(response));
       setIsLoading(false);
     });
-  }, []);
+  }, [time, groupName, setGroupData]);
 
   // Distance between 2 people function
   const geolocation = useGeolocation();
@@ -68,11 +67,19 @@ const GroupPage = ({ groupData, setGroupData }) => {
       style={{ position: "relative", overflow: "hidden" }}
     >
       <div style={{ position: "absolute" }}>
-        <Particle height="100vh" width="100vw" params={particlesConfig} />
+        <Particle height="100%" width="100vw" params={particlesConfig} />
       </div>
       <NavBar />
       <h2>{group_slug}</h2>
       <h4>Welcome {username}</h4>
+      <div className="button-container">
+        <Link to={`/${group_slug}/ar`}>
+          <button className="join-button">View in AR</button>
+        </Link>
+        <Link to={`/${group_slug}/map`}>
+          <button className="create-button">View in 2D</button>
+        </Link>
+      </div>
       <div className="group-container">
         <ul className="group-list">
           <li className="user-heading">Group Members</li>
@@ -84,9 +91,8 @@ const GroupPage = ({ groupData, setGroupData }) => {
             );
           })}
         </ul>
-
         <ul className="distance-list">
-          <li className="user-heading">{`Distance from you`}</li>
+          <li className="user-heading">{`Distance`}</li>
           {lookupObj.map((member) => {
             return (
               <li key={member + member}>

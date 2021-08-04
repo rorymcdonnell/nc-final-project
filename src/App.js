@@ -12,40 +12,42 @@ import Chatroom from "./components/Chatroom";
 function App() {
   const [username, setUsername] = useState("");
   const [groupName, setGroupName] = useState("");
-  const [location, setLocation] = useState("");
+
+  const [time, setTime] = useState("");
   const [groupData, setGroupData] = useState(null);
 
   return (
-    <HashRouter basename="/">
+    <HashRouter forceRefresh={true} basename="/">
       <div>
         {username !== "" && groupName !== "" ? (
           <GeoLocation
             username={username}
             groupName={groupName}
-            location={location}
-            setLocation={setLocation}
+            time={time}
+            setTime={setTime}
           />
         ) : null}
-
         <GroupContext.Provider value={{ groupName, setGroupName }}>
           <div className="App">
             <Switch>
               <Route exact path="/">
                 <LandingPage
                   setUsername={setUsername}
-                  username={username}
-                  groupName={groupName}
                   setGroupName={setGroupName}
                 />
               </Route>
               <Route exact path="/:group_slug">
-                <GroupPage groupData={groupData} setGroupData={setGroupData} />
+                <GroupPage
+                  groupData={groupData}
+                  setGroupData={setGroupData}
+                  time={time}
+                />
               </Route>
               <Route exact path="/:group_slug/map">
-                <Map location={location} />
+                <Map time={time} />
               </Route>
               <Route exact path="/:group_slug/ar">
-                <Marker groupData={groupData} location={location} />
+                <Marker groupData={groupData} />
               </Route>
               <Route exact path="/:group_slug/chatroom">
                 <Chatroom />
