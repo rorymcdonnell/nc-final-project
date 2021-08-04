@@ -308,14 +308,12 @@ h1 {
   justify-content: center;
   min-height: 100vh;
   background-color: #40c9b0;
-  overflow: hidden;
 }
 
 .chatbox {
   padding: 10px;
-  height: 100vh;
+
   margin: 10vh 0 10vh;
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
 }
