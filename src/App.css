@@ -272,6 +272,7 @@ h1 {
   overflow-y: auto;
   color: white;
   font-weight: 700;
+  zoom: 100%;
 }
 .group-greeting {
   font-weight: 700;
