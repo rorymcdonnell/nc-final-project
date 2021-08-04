@@ -35,13 +35,16 @@ function App() {
                   setGroupName={setGroupName}
                 />
               </Route>
-              <Route exact path="/:group_slug">
-                <GroupPage
-                  groupData={groupData}
-                  setGroupData={setGroupData}
-                  time={time}
-                />
-              </Route>
+              {username !== '' && groupName !== '' && (
+                <Route exact path="/:group_slug">
+                  <GroupPage
+                    groupData={groupData}
+                    setGroupData={setGroupData}
+                    time={time}
+                  />
+                </Route>
+              )}
+
               <Route exact path="/:group_slug/map">
                 <Map time={time} />
               </Route>
