@@ -1,11 +1,11 @@
-import firebase from '../Firebase/firebase';
+import firebase from "../Firebase/firebase";
 //checks database for groups existence
 
 export const checkGroupExists = (groupName) => {
   const group = firebase.database().ref(`${groupName}`);
 
   return group
-    .once('value')
+    .once("value")
     .then((data) => {
       const response = data.val();
       if (response === null) {
@@ -31,7 +31,7 @@ export const sendData = (groupName, username, latitude, longitude) => {
 export const getGroupData = (groupName) => {
   const group = firebase.database().ref(`${groupName}`);
 
-  return group.once('value').then((data) => {
+  return group.once("value").then((data) => {
     const response = data.val();
     return response;
   });
