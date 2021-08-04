@@ -1,25 +1,25 @@
-import "./App.css";
-import { HashRouter, Route, Switch } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import GroupPage from "./components/GroupPage";
-import { useState } from "react";
-import { GroupContext } from "./contexts/groupContext";
-import Map from "./components/Map";
-import Marker from "./components/Marker";
-import GeoLocation from "./components/GeoLocation";
-import Chatroom from "../src/components/Chatroom";
+import './App.css';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import GroupPage from './components/GroupPage';
+import { useState } from 'react';
+import { GroupContext } from './contexts/groupContext';
+import Map from './components/Map';
+import Marker from './components/Marker';
+import GeoLocation from './components/GeoLocation';
+import Chatroom from '../src/components/Chatroom';
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [groupName, setGroupName] = useState("");
+  const [username, setUsername] = useState('');
+  const [groupName, setGroupName] = useState('');
 
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState('');
   const [groupData, setGroupData] = useState(null);
 
   return (
     <HashRouter forceRefresh={true} basename="/">
       <div>
-        {username !== "" && groupName !== "" ? (
+        {username !== '' && groupName !== '' ? (
           <GeoLocation
             username={username}
             groupName={groupName}
@@ -30,12 +30,22 @@ function App() {
         <GroupContext.Provider value={{ groupName, setGroupName }}>
           <div className="App">
             <Switch>
-              <Route exact path="/">
-                <LandingPage
-                  setUsername={setUsername}
-                  setGroupName={setGroupName}
-                />
-              </Route>
+              {username !== '' && groupName !== '' ? (
+                <Route exact path="/:group_slug">
+                  <GroupPage
+                    groupData={groupData}
+                    setGroupData={setGroupData}
+                    time={time}
+                  />
+                </Route>
+              ) : (
+                <Route exact path="/">
+                  <LandingPage
+                    setUsername={setUsername}
+                    setGroupName={setGroupName}
+                  />
+                </Route>
+              )}
               <Route exact path="/:group_slug">
                 <GroupPage
                   groupData={groupData}
