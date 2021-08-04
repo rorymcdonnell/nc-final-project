@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "./ChatMessage";
 import NavBar from "./NavigationBar";
@@ -18,7 +18,7 @@ const Chatroom = () => {
   const [formVal, setFormVal] = useState("");
 
   const [messages] = useCollectionData(query, { idField: "id" });
-  const dummy = useRef();
+  const messagesEnd = useRef();
 
   const sendMessage = async (event) => {
     event.preventDefault();
@@ -30,7 +30,9 @@ const Chatroom = () => {
     });
 
     setFormVal("");
-    dummy.current.scrollIntoView({ behavior: "smooth" });
+    messagesEnd.current.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -43,15 +45,18 @@ const Chatroom = () => {
       </div>
       <NavBar />
       <h1>{groupName}'s Chat</h1>
-      <div className="chatbox">
-        {messages &&
-          messages
-            .filter((message) => message.groupName === groupName)
-            .map((message) => (
-              <ChatMessage key={message.id} message={message} />
-            ))}
-        <div ref={dummy}></div>
+      <div className="chat-container">
+        <div className="chatbox">
+          {messages &&
+            messages
+              .filter((message) => message.groupName === groupName)
+              .map((message) => (
+                <ChatMessage key={message.id} message={message} />
+              ))}
+        </div>
+        <div ref={messagesEnd}></div>
       </div>
+
       <div className="form-inline">
         <form onSubmit={sendMessage}>
           <textarea
