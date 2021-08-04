@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 
 const Marker = ({ groupData }) => {
-  const groupName = localStorage.getItem('groupName');
-
   useEffect(() => {
     setHTML();
   });
