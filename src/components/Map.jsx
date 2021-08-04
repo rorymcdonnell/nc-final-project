@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 
 const Map = ({ time }) => {
   const groupName = localStorage.getItem('groupName');
+  const username = localStorage.getItem('username');
 
   const [groupData, setGroupData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -100,8 +101,11 @@ const Map = ({ time }) => {
           </Link>
           <div>
             <MapContainer
-              center={[52.675541, 1.23128]} //change to users location
-              zoom={13}
+              center={[
+                groupData[username].position.latitude,
+                groupData[username].position.longitude
+              ]} //change to users location
+              zoom={14}
               scrollWheelZoom={false}
             >
               <TileLayer
@@ -112,6 +116,7 @@ const Map = ({ time }) => {
                 const lat = groupData[member].position.latitude;
                 const lng = groupData[member].position.longitude;
                 const finalPosition = [lat, lng];
+
                 return (
                   <Marker
                     key={member}
