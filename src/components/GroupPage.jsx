@@ -70,8 +70,8 @@ const GroupPage = ({ groupData, setGroupData, time }) => {
         <Particle height="100%" width="100vw" params={particlesConfig} />
       </div>
       <NavBar />
-      <h2>{group_slug}</h2>
-      <h4>Welcome {username}</h4>
+      <h1 className="group-name">{group_slug}</h1>
+      <h1 className="group-greeting">Welcome {username}</h1>
       <div className="button-container">
         <Link to={`/${group_slug}/ar`}>
           <button className="join-button">View in AR</button>
