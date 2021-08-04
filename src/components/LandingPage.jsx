@@ -93,7 +93,6 @@ const LandingPage = ({ setUsername, setGroupName }) => {
           ></input>
           <p>{error && error}</p>
         </label>
-        <p className="fade-out">{error}</p>
         <br />
         {groupPageDisabled ? (
           <div className="button-container">
