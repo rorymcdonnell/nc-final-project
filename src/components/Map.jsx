@@ -104,7 +104,7 @@ const Map = ({ time }) => {
               center={[
                 groupData[username].position.latitude,
                 groupData[username].position.longitude
-              ]} //change to users location
+              ]}
               zoom={14}
               scrollWheelZoom={false}
             >
